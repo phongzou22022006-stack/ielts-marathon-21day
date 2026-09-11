@@ -1,0 +1,1143 @@
+<script>
+"use strict";
+/* ============================================================
+   DATA: PASSAGES, READING QUIZ, LISTENING, VOCAB, GRAMMAR, ...
+   ============================================================ */
+
+/* ---- READING PASSAGES (actual content from book) ---- */
+const PASSAGES = {
+  p1:{
+    title:"Passage 1 — The Quiet Cost of Constant Switching (Ngày 1)",
+    focus:"Task switching, multitasking, concentration",
+    text:`<p>Many students believe they are good at multitasking, but the mental effort they lose each time they switch between tasks is often far greater than they realise. Real attention does not split cleanly; it is moved, and every move carries a cost.</p>
+<p>True simultaneous activity is rare. Rapidly alternating between tasks is not true multitasking, and it comes at a price. Each small jump from one task to another forces the brain to rebuild its focus, and the effort accumulates throughout the day.</p>
+<p>When a learner is interrupted, they do not simply pick up where they left off. A resumption cost appears: time needed to remember where they were and what they planned to do next. A difficult paragraph creates discomfort, and opening another app provides relief — the student escapes the struggle rather than pushing through it.</p>
+<p>Digital platforms are not the only cause. Students also interrupt themselves: they check another app even when there has been no notification at all. This makes a pattern visible that few are aware of, and judging progress depends on seeing that pattern honestly.</p>
+<p>Working in focused blocks — instead of responding to whatever happens to appear — protects concentration. One recurring error is to believe an unplanned interruption is harmless; it is not. A deliberate pause, taken at the end of a completed work block, is different: it is chosen rather than automatic, and it helps the learner rebuild concentration with a clear plan.</p>`,
+    questions:[
+      {t:"tfng", stem:"1. Students usually calculate the full mental cost of brief interruptions accurately.", ans:"NG", explain:"Đoạn văn không nói học viên có (hoặc không) tính toán đúng chi phí tinh thần — chỉ nói chi phí "thường lớn hơn họ nhận ra". Không có thông tin → Not Given."},
+      {t:"tfng", stem:"2. Walking and holding a casual conversation may be easier than combining two demanding language tasks.", ans:"TRUE", explain:"Đi bộ + trò chuyện là việc tự động (automatic), không đòi hỏi gấp đôi sức như hai việc ngôn ngữ nặng. → TRUE."},
+      {t:"tfng", stem:"3. Resumption costs always last for more than one minute.", ans:"FALSE", explain:"Từ "always" + "more than one minute" quá tuyệt đối, không có trong bài. Resumption cost xuất hiện là có thật nhưng độ dài không được khẳng định".},
+      {t:"tfng", stem:"4. Students may check another app even when they have received no notification.", ans:"TRUE", explain:"Bài nói rõ: "they check another app even when there has been no notification at all" → TRUE."},
+      {t:"tfng", stem:"5. The passage recommends that every learner use a fifty-minute study block.", ans:"NG", explain:"Bài khuyên làm việc theo "focused blocks" nhưng KHÔNG đưa con số cụ thể 50 phút → Not Given."},
+      {t:"mc", stem:"6. Điểm chính của Paragraph C?", opts:["A. Multitasking giúp làm việc hiệu quả hơn","B. Switching có thể giảm cả thời gian lẫn độ sâu hiểu","C. Mọi sự gián đoạn đều do điện thoại","D. Luyện tập giúp giảm resumption cost"], ans:1, explain:"Paragraph C nói về resumption cost và cái giá của việc chuyển đổi → đáp án B."},
+      {t:"mc", stem:"7. Vì sao một đoạn văn khó dẫn đến task switching?", opts:["A. Vì nó tạo sự khó chịu mà học viên muốn trốn tránh","B. Vì nó quá thú vị, học viên muốn ghi chú","C. Vì giáo viên yêu cầu nghỉ giải lao","D. Vì thiết bị tự phát thông báo"], ans:0, explain:"Bài: "A difficult paragraph creates discomfort... the student escapes the struggle." → A."},
+      {t:"mc", stem:"8. Sự phân biệt nào trong Paragraph G?", opts:["A. Học ở nhà và học ở trường","B. Làm gián đoạn bởi con người và bởi máy móc","C. Chosen breaks và automatic interruptions","D. Việc khó và việc dễ"], ans:2, explain:"Paragraph G phân biệt pause "chosen" (chủ động) với interruptions "automatic" (tự động). → C."},
+      {t:"comp", stem:"9. Sau một sự gián đoạn, người học có thể cần nhớ lại (bước tiếp theo) mà họ đã định làm.", clue:"Sau 'remember the', nhập tối đa 3 từ.Sau 'remember the', nhập tối đa 3 từ.", ans:["next step"], explain:"Resumption cost = nhớ "where you were and what you planned to do next". → "next step"."},
+      {t:"comp", stem:"10. Công cụ số có thể cần thiết vì tài liệu khóa học thường (được đặt) ...", clue:"Tính từ chỉ trạng thái 'nối mạng'.Tính từ chỉ trạng thái 'nối mạng'.", ans:["online"], explain:"Tài liệu khóa học thường được đặt "online"."},
+      {t:"comp", stem:"11. Một học viên có thể ghi lại ham muốn rời bỏ công việc bằng cách vẽ/một cột ...", clue:"Trong notebook.Trong notebook.", ans:["a line","a cross","line","cross"], explain:"Vẽ "a line/cross" trong sổ để nhận diện thói quen."},
+      {t:"comp", stem:"12. Một khoảng dừng chủ động có thể bảo vệ sự tập trung khi nó diễn ra sau một (khoảng làm việc) đã hoàn thành.", clue:"Loại khoảng thời gian.Loại khoảng thời gian.", ans:["work block"], explain:""Deliberate pause... at the end of a completed work block". → "work block"."}
+    ]
+  },
+  p2:{
+    title:"Passage 2 — Practical Skills and the Modern School (Ngày 2)",
+    focus:"Academic vs practical education debate",
+    text:`<p>Around the world, schools argue about whether they should teach practical life skills or focus on academic knowledge. On closer inspection, the two sides overlap far more than the debate suggests.</p>
+<p>Supporters of practical education argue that many teenagers leave school without basic knowledge they need for adult life — how to budget, cook, or manage a household. Critics reply that the school day is limited, and that practical needs change so quickly they may become outdated before students finish.</p>
+<p>There is also an open question of responsibility: should families teach life skills, or should schools? Families differ in what they can provide, and unequal access to resources is a real concern. Some argue that putting life skills on the timetable places pressure on an already crowded day.</p>
+<p>Assessing practical skills is difficult. Academic subjects are tested with exams; practical skills are often judged through project work and observation. Yet learning by trial and error is a genuine way to apply knowledge in practice, and many educators now argue that a well-rounded education should include both.</p>`,
+    writing:"Some people believe that secondary schools should ban smartphones for the entire school day. To what extent do you agree or disagree?",
+    questions:[
+      {t:"tfng", stem:"1. The debate about academic and practical education is completely clear-cut, with no overlap.", ans:"FALSE", explain:"Bài nói hai bên "overlap far more than the debate suggests" → không rõ ràng phân chia → FALSE."},
+      {t:"tfng", stem:"2. Supporters of practical education say teenagers leave school without basic adult-life knowledge.", ans:"TRUE", explain:""passes leave school without basic knowledge they need for adult life." → TRUE."},
+      {t:"tfng", stem:"3. Critics believe practical skills will never change.", ans:"FALSE", explain:"Critics nói practical needs change so quickly they may become outdated → FALSE."},
+      {t:"tfng", stem:"4. The passage proves that schools are better than families at teaching life skills.", ans:"NG", explain:"Bài đặt câu hỏi trách nhiệm nhưng không kết luận ai làm tốt hơn → Not Given."},
+      {t:"mc", stem:"5. Which is cited as a difficulty with practical skills?", opts:["A. Cheap cost to run","B. Difficulty of assessing them","C. Too much exam pressure","D. Students refuse to do it"], ans:1, explain:""Assessing practical skills is difficult... judged through project work." → B."},
+      {t:"comp", stem:"6. Một nền giáo dục toàn diện (well-rounded) nên bao gồm ..., theo nhiều nhà giáo dục.", clue:"Từ khóa đối lập với academic.Từ khóa đối lập với academic.", ans:["both"], explain:""a well-rounded education should include both" (academic + practical)."}
+    ]
+  },
+  p3:{
+    title:"Passage 3 — The Reinvention of the Public Library (Ngày 3)",
+    focus:"Modern libraries beyond book lending",
+    text:`<p>Public libraries are reinventing themselves. No longer are they quiet rooms full of shelves alone; many now offer technology access, guided learning and community programmes.</p>
+<p>Some visitors still worry about the loss of the quiet environment — a dedicated place to read. In response, many new buildings use flexible spaces: quiet study zones sit beside open, collaborative areas. This design lets a single building serve a wider range of needs instead of following a universal model.</p>
+<p>Libraries also aim to bridge the digital divide by giving free access to computers and the internet, helping people who depend on a person's income to afford equipment. Staff help visitors evaluate information critically and find reliable sources, rather than handing over answers.</p>
+<p>The value of a library is often invisible in traditional lending statistics, which count only books borrowed. Regular users see a community hub, a safe indoor space, and a staff who are sometimes placed under pressure as demands grow. Traditional numbers do not capture any of this.</p>`,
+    questions:[
+      {t:"tfng", stem:"1. Modern libraries now offer technology and guided learning, not just book lending.", ans:"TRUE", explain:"Bài: "many now offer technology access, guided learning and community programmes." → TRUE."},
+      {t:"tfng", stem:"2. All visitors are happy with the new direction of libraries.", ans:"FALSE", explain:""Some visitors still worry about the loss of the quiet environment" → không phải tất cả → FALSE."},
+      {t:"tfng", stem:"3. New library buildings place reading rooms far from all other areas.", ans:"NG", explain:"Bàn về flexible spaces nhưng không nói khoảng cách cụ thể → Not Given."},
+      {t:"tfng", stem:"4. Libraries help people who cannot easily afford digital equipment.", ans:"TRUE", explain:""bridge the digital divide by giving free access to computers and the internet... who depend on income to afford equipment." → TRUE."},
+      {t:"tfng", stem:"5. Traditional lending statistics fully capture the value a library provides.", ans:"FALSE", explain:"Bài nói giá trị "invisible in traditional lending statistics" → FALSE."},
+      {t:"comp", stem:"6. Libraries cung cấp (quyền truy cập) ... cho máy tính và internet.", clue:"Danh từ chỉ sự tiếp cận.Danh từ chỉ sự tiếp cận.", ans:["access"], explain:""giving free access to computers and the internet.""},
+      {t:"comp", stem:"7. Nhân viên giúp khách (đánh giá) ... thông tin bằng tư duy phản biện.", clue:"Động từ.Động từ.", ans:["evaluate"], explain:""help visitors evaluate information critically.""},
+      {t:"comp", stem:"8. Với người dùng thường xuyên, thư viện là một (trung tâm) ... cộng đồng.", clue:"Hai từ.Hai từ.", ans:["community hub"], explain:""a community hub, a safe indoor space.""},
+      {t:"mc", stem:"9. Tại sao "flexible spaces" được nhắc tới?", opts:["A. Để tiết kiệm điện","B. Để một tòa nhà phục vụ nhiều nhu cầu hơn","C. Để chứa thêm sách","D. Để giảm số nhân viên"], ans:1, explain:""lets a single building serve a wider range of needs." → B."}
+    ]
+  },
+  p4:{
+    title:"Passage 4 — Why Pauses Are Not the Enemy (Ngày 4)",
+    focus:"Speaking fluency, role of pauses",
+    text:`<p>Many learners believe fluency means speaking non-stop. In reality, speed is not the same as clarity, and well-placed pauses can make a speaker easier to understand, not harder.</p>
+<p>Pauses do useful work. They give the listener time to process, they signal that a new idea is coming, and they let the speaker breathe and plan. Their location, however, matters: a pause between phrases sounds natural, while a pause in the middle of the wrong word can confuse.</p>
+<p>When a speaker gets stuck, the response matters too. Recovery phrases — "what I mean is…", "let me put that another way" — buy time without breaking fluency. Pronunciation and intelligibility are closely linked; a speaker with clear sounds needs fewer repairs.</p>
+<p>Fluent speech is grown through focused practice. Recording yourself, listening back, and repeating a difficult section trains the mouth and the ear together. Pauses, used deliberately, become part of that skill rather than a sign of failure.</p>`,
+    headings:{
+      "B":"The functions of pauses",
+      "C":"Location of pauses matters",
+      "D":"Recovery phrases",
+      "E":"Pronunciation and intelligibility",
+      "F":"Focused practice through recording"
+    },
+    questions:[
+      {t:"head", stem:"A. Đoạn mở đầu — fluency # không ngừng nói.", intro:true},
+      {t:"head", stem:"B. Chọn tiêu đề cho phần này:", opts:["Speed vs clarity","The functions of pauses","Location of pauses"], ans:"The functions of pauses", explain:"Đoạn nói pauses "do useful work": cho người nghe thời gian, báo hiệu ý mới, cho người nói thở. → 'The functions of pauses'."},
+      {t:"head", stem:"C. Chọn tiêu đề cho phần này:", opts:["Focused practice","Location of pauses matters","Recovery phrases"], ans:"Location of pauses matters", explain:"Đoạn nói vị trí pause: giữa cụm từ thì tự nhiên, giữa từ sai thì gây khó hiểu. → 'Location of pauses matters'."},
+      {t:"head", stem:"D. Chọn tiêu đề cho phần này:", opts:["Recovery phrases","The functions of pauses","Focused practice"], ans:"Recovery phrases", explain:"Đoạn cho các mẫu câu cứu chữa ('what I mean is…') mua thêm thời gian. → 'Recovery phrases'."},
+      {t:"head", stem:"E. Chọn tiêu đề cho phần này:", opts:["Speed vs clarity","Pronunciation and intelligibility","Recovery phrases"], ans:"Pronunciation and intelligibility", explain:"Đoạn nói phát âm rõ → ít phải sửa lại. → 'Pronunciation and intelligibility'."},
+      {t:"head", stem:"F. Chọn tiêu đề cho phần này:", opts:["Location of pauses matters","The functions of pauses","Focused practice through recording"], ans:"Focused practice through recording", explain:"Đoạn khuyên ghi âm, nghe lại, lặp lại đoạn khó. → 'Focused practice through recording'."},
+      {t:"mc", stem:"7. Theo bài, mối quan hệ giữa speed và clarity?", opts:["A. Nhanh luôn tốt hơn","B. Nhanh ≠ rõ ràng, pause đúng chỗ giúp dễ hiểu hơn","C. Chậm thì không bao giờ rõ","D. Tốc độ không quan trọng"], ans:1, explain:""speed is not the same as clarity, and well-placed pauses can make a speaker easier to understand." → B."},
+      {t:"comp", stem:"8. Một câu cứu chữa mua thêm (thời gian) ... cho người nói.", clue:"Một từ.Một từ.", ans:["time"], explain:"Recovery phrases "buy time without breaking fluency"."}
+    ]
+  },
+  p7:{
+    title:"Passage 7 — The Psychology of Small Wins (Ngày 7)",
+    focus:"Motivation through small achievements",
+    text:`<p>Big goals can feel distant, and distance discourages. One of the most effective ways to rebuild momentum is to collect small wins — small, clear achievements that prove progress.</p>
+<p>A small win is not merely a token. It releases a sense of accomplishment that fuels the next step. People who break an intimidating task into manageable pieces report higher motivation and lower anxiety than those who stare at the whole mountain.</p>
+<p>Progress that is visible is progress that motivates. Marking off completed steps, however small, makes a pattern visible and helps someone judge progress honestly rather than guess. This is why checklists and habit trackers work.</p>
+<p>The effect depends on the task. Wins that are too trivial feel empty; wins that require real effort feel deserved. A well-chosen goal is one that is neither overwhelming nor pointless, and applying this in study means designing tasks you can actually complete in the time you have.</p>`,
+    questions:[
+      {t:"tfng", stem:"1. Big goals always motivate people strongly.", ans:"FALSE", explain:"Bài nói big goals "can feel distant, and distance discourages" → FALSE."},
+      {t:"tfng", stem:"2. Small wins release a sense of accomplishment that fuels the next step.", ans:"TRUE", explain:""It releases a sense of accomplishment that fuels the next step." → TRUE."},
+      {t:"tfng", stem:"3. The passage proves that trivial wins are the most effective.", ans:"FALSE", explain:""Wins that are too trivial feel empty" → ngược lại → FALSE."},
+      {t:"mc", stem:"4. Vì sao checklist/habit tracker hiệu quả?", opts:["A. Vì chúng tự động tăng điểm số","B. Vì tiến bộ nhìn thấy được thì tạo động lực","C. Vì chúng giảm thời gian học","D. Vì chúng thay thế mục tiêu lớn"], ans:1, explain:""Progress that is visible is progress that motivates. This is why checklists... work." → B."},
+      {t:"comp", stem:"5. Đánh dấu các bước hoàn thành giúp nhận diện rõ một (thói quen/mô hình) ...", clue:"Một từ mang nghĩa pattern.Một từ mang nghĩa pattern.", ans:["pattern"], explain:""makes a pattern visible and helps someone judge progress honestly.""},
+      {t:"comp", stem:"6. Một mục tiêu được chọn kỹ không nên quá sức cũng không (vô nghĩa) ...", clue:"Tính từ phủ định 'pointless'.Tính từ phủ định 'pointless'.", ans:["pointless"], explain:""neither overwhelming nor pointless".""}
+    ]
+  },
+  p8:{
+    title:"Passage 8 — Why Short Videos Feel So Easy (Ngày 8)",
+    focus:"Short-form video design, attention, learning",
+    text:`<p>Short-form video feels effortless to watch, and there is a reason: every element is engineered to deliver an instant reward. Constant stimulation keeps attention moving, and each clip resets the brain to expect the next payoff.</p>
+<p>This design shapes a habit. A personalised feed learns what captures your attention and offers more of it, while sustained attention for a longer task becomes harder. Passive consumption replaces deeper learning, and social comparison chips away at motivation.</p>
+<p>The effects matter for learning. Holding information in memory requires effort and the ability to tolerate uncertainty; quick clips train the opposite. Curiosity is sparked, but a spark without the patience to follow it does not become knowledge.</p>
+<p>None of this means short videos are bad. The question is friction: introducing a deliberate delay, or using technology deliberately, restores some control. Attention, like most habits, is shaped by what we choose to practise.</p>`,
+    questions:[
+      {t:"tfng", stem:"1. Short-form video is intentionally designed to provide instant gratification.", ans:"TRUE", explain:""engineered to deliver an instant reward... instant reward" → TRUE."},
+      {t:"tfng", stem:"2. All short videos are harmful to learning.", ans:"FALSE", explain:"Bài nói "None of this means short videos are bad" → FALSE."},
+      {t:"tfng", stem:"3. A personalised feed keeps showing content similar to what you watch.", ans:"TRUE", explain:""learns what captures your attention and offers more of it" → TRUE."},
+      {t:"comp", stem:"4. Chức năng của 'friction' là đưa một sự (chậm lại) ... có chủ đích.", clue:"Sự trì hoãn chủ động.Sự trì hoãn chủ động.", ans:["deliberate delay","delay"], explain:""introducing a deliberate delay... restores some control." → 'deliberate delay'."},
+      {t:"comp", stem:"5. Sự tò mò bị 'spark' nhưng nếu không kiên nhẫn theo đuổi thì không thành (kiến thức) ...", clue:"Một từ.Một từ.", ans:["knowledge"], explain:""a spark without the patience to follow it does not become knowledge.""},
+      {t:"mc", stem:"6. Điều gì giúp khôi phục kiểm soát khi dùng video ngắn?", opts:["A. Xem nhiều hơn","B. Đưa ra sự trì hoãn/giới hạn chủ động","C. Tắt tiếng","D. Xem vào ban đêm"], ans:1, explain:""introducing a deliberate delay, or using technology deliberately, restores some control." → B."}
+    ]
+  }
+};
+
+/* ---- LISTENING DATA (comprehension questions per passage + sections) ---- */
+const LISTENING = {
+  p1:{
+    title:"Nghe – Chủ đề: Task switching & concentration (Ngày 1)",
+    source:"Dựa theo Passage 1",
+    text:PASSAGES.p1.text,
+    questions:[
+      {t:"mc", stem:"Q1. Chủ đề chính của bài là gì?", opts:["A. Lợi ích của đa nhiệm","B. Chi phí ẩn giấu của việc chuyển đổi nhiệm vụ","C. Cách dùng smartphone năng suất","D. Lịch sử nghiên cứu tâm lý"], ans:1, explain:"Toàn bài xoay quanh chi phí tinh thần khi chuyển đổi nhiệm vụ."},
+      {t:"gap", stem:"Q2. Theo bài, vừa đi bộ vừa trò chuyện dễ hơn vì việc đi bộ là [_____] (tự động / nhẹ nhàng)", ans:["automatic","effortless"], explain:"Walking là hoạt động tự động (automatic/effortless), không đòi hỏi 2 nhiệm vụ ngôn ngữ nặng."},
+      {t:"mc", stem:"Q3. 'Resumption cost' là gì?", opts:["A. Chi phí tiền bạc khi đổi máy","B. Thời gian cần để nhớ vị trí và việc định làm tiếp sau khi bị gián đoạn","C. Phí đăng ký ứng dụng","D. Năng lượng khi tập thể dục"], ans:1, explain:"= thời gian khôi phục để nhớ 'where you were and what you planned to do next' sau gián đoạn."},
+      {t:"mc", stem:"Q4. Vì sao học viên tự làm gián đoạn mình?", opts:["A. Vì thiết bị luôn báo thông báo","B. Một khoảnh khắc khó khăn tạo khó chịu, mở app khác cho cảm giác nhẹ nhõm","C. Vì chán không còn gì để học","D. Vì được giáo viên cho phép"], ans:1, explain:"Moment of difficulty → discomfort → opening another app provides relief."},
+      {t:"gap", stem:"Q5. Một khoảng dừng chủ động bảo vệ sự tập trung khi nó xảy ra sau một [_____] đã hoàn thành.", ans:["work block"], explain:"Deliberate pause at the end of a completed work block = chosen, không phải automatic."}
+    ]
+  },
+  p2:{
+    title:"Nghe – Chủ đề: Practical vs academic education (Ngày 2)",
+    source:"Dựa theo Passage 2",
+    text:PASSAGES.p2.text,
+    questions:[
+      {t:"mc", stem:"Q1. Mối quan hệ giữa giáo dục học thuật và thực hành theo bài?", opts:["A. Hoàn toàn tách biệt","B. Chồng chéo nhiều hơn cuộc tranh luận thể hiện","C. Không liên quan","D. Trái ngược hoàn toàn"], ans:1, explain:"'overlap far more than the debate suggests' → B."},
+      {t:"gap", stem:"Q2. Người ủng hộ giáo dục thực hành nói nhiều thiếu niên ra trường thiếu kiến thức cần cho [_____] (đời sống người lớn).", ans:["adult life"], explain:"'basic knowledge they need for adult life'."},
+      {t:"mc", stem:"Q3. Phê bình gia đình học cách làm gì về việc dạy kỹ năng sống?", opts:["A. Gia đình nên chịu trách nhiệm","B. Có sự chênh lệch khả năng tiếp cận nguồn lực","C. Gia đình rảnh hơn trường","D. Không bàn tới gia đình"], ans:1, explain:"'unequal access to resources is a real concern' → B."},
+      {t:"mc", stem:"Q4. Khó khăn chính của việc đánh giá kỹ năng thực hành?", opts:["A. Quá rẻ để đánh giá","B. Khó kiểm tra như môn học thuật","C. Học sinh từ chối","D. Không có giáo viên"], ans:1, explain:"Academic dùng exam; practical đánh giá qua project work & observation → khó → B."}
+    ]
+  },
+  p3:{
+    title:"Nghe – Chủ đề: Reinvention of public library (Ngày 3)",
+    source:"Dựa theo Passage 3",
+    text:PASSAGES.p3.text,
+    questions:[
+      {t:"mc", stem:"Q1. Thư viện hiện đại đang làm gì?", opts:["A. Chỉ cho mượn sách","B. Mở rộng ra công nghệ, học có hướng dẫn, chương trình cộng đồng","C. Đóng cửa khu yên tĩnh hoàn toàn","D. Thu phí truy cập"], ans:1, explain:"'offer technology access, guided learning and community programmes.'"},
+      {t:"mc", stem:"Q2. Một số khách lo lắng về điều gì?", opts:["A. Giá mượn sách tăng","B. Mất đi môi trường yên tĩnh","C. Quá nhiều sách","D. Thiếu wifi"], ans:1, explain:"'Some visitors still worry about the loss of the quiet environment.'"},
+      {t:"gap", stem:"Q3. Thư viện hướng tới việc thu hẹp [_____] (khoảng cách số) bằng cách cho miễn phí máy tính và internet.", ans:["digital divide"], explain:"'bridge the digital divide by giving free access to computers and the internet.'"},
+      {t:"mc", stem:"Q4. Thước đo truyền thống (lending statistics) có thể hiện đầy đủ giá trị thư viện không?", opts:["A. Có, chính xác tuyệt đối","B. Không, giá trị thường vô hình trong số liệu đó","C. Có, vì đo mọi hoạt động","D. Không bao giờ đếm được sách"], ans:1, explain:"'value... invisible in traditional lending statistics' → B."}
+    ]
+  },
+  p4:{
+    title:"Nghe – Chủ đề: The role of pauses (Ngày 4)",
+    source:"Dựa theo Passage 4",
+    text:PASSAGES.p4.text,
+    questions:[
+      {t:"mc", stem:"Q1. Quan điểm chính về pauses?", opts:["A. Pause luôn là dấu hiệu yếu kém","B. Pause đặt đúng chỗ giúp dễ hiểu hơn","C. Phải nói thật nhanh mới fluent","D. Không bao giờ nên dừng"], ans:1, explain:"'well-placed pauses can make a speaker easier to understand.'"},
+      {t:"gap", stem:"Q2. Vị trí pause giữa các [_____] (cụm từ) thì tự nhiên.", ans:["phrases"], explain:"'a pause between phrases sounds natural.'"},
+      {t:"mc", stem:"Q3. 'Recovery phrases' có tác dụng gì?", opts:["A. Làm câu dài hơn","B. Mua thời gian mà không phá vỡ sự trôi chảy","C. Giảm từ vựng","D. Bắt buộc phải dùng"], ans:1, explain:"Recovery phrases 'buy time without breaking fluency' → B."},
+      {t:"mc", stem:"Q4. Cách luyện nói có trọng tâm được gợi ý?", opts:["A. Chỉ học lý thuyết","B. Ghi âm, nghe lại, lặp lại đoạn khó","C. Nói thật to","D. Học thuộc lòng từ điển"], ans:1, explain:"'Recording yourself, listening back, repeating a difficult section' → B."}
+    ]
+  },
+  p7:{
+    title:"Nghe – Chủ đề: Psychology of small wins (Ngày 7)",
+    source:"Dựa theo Passage 7",
+    text:PASSAGES.p7.text,
+    questions:[
+      {t:"mc", stem:"Q1. Vì sao mục tiêu lớn dễ làm ta nản?", opts:["A. Vì quá dễ","B. Vì chúng xa vời và khoảng cách làm giảm động lực","C. Vì tốn tiền","D. Vì khó nói"], ans:1, explain:"'Big goals can feel distant, and distance discourages.'"},
+      {t:"gap", stem:"Q2. Small win giải phóng cảm giác (thành tựu) ... giúp thúc đẩy bước tiếp.", ans:["accomplishment"], explain:"'releases a sense of accomplishment that fuels the next step.'"},
+      {t:"mc", stem:"Q3. Vì sao checklist/trackers hoạt động?", opts:["A. Vì tự động tăng điểm","B. Tiến bộ nhìn thấy được thì tạo động lực","C. Vì chúng thay thế mục tiêu","D. Vì giảm việc làm"], ans:1, explain:"'Progress that is visible is progress that motivates.'"},
+      {t:"mc", stem:"Q4. Mục tiêu được chọn tốt nên thế nào?", opts:["A. Thật nhỏ và vô nghĩa","B. Không quá sức cũng không vô nghĩa","C. Luôn là mục tiêu lớn","D. Đặt ở ngoài khả năng"], ans:1, explain:"'neither overwhelming nor pointless.' → B."}
+    ]
+  },
+  p8:{
+    title:"Nghe – Chủ đề: Short-form video & attention (Ngày 8)",
+    source:"Dựa theo Passage 8",
+    text:PASSAGES.p8.text,
+    questions:[
+      {t:"mc", stem:"Q1. Vì sao video ngắn khiến ta xem dễ dàng?", opts:["A. Vì quá ngắn để gây nghiện","B. Từng yếu tố được thiết kế để cho phần thưởng tức thì","C. Vì không có âm thanh","D. Vì không có quảng cáo"], ans:1, explain:"'engineered to deliver an instant reward.'"},
+      {t:"gap", stem:"Q2. A personalised feed học điều gì thu hút sự chú ý của bạn rồi cho thêm [_____] (nhiều hơn về nó).", ans:["more of it"], explain:"'learns what captures your attention and offers more of it.'"},
+      {t:"mc", stem:"Q3. Điều gì giúp khôi phục kiểm soát?", opts:["A. Xem nhiều hơn","B. Cố ý tạo trì hoãn/dùng công nghệ có chủ đích","C. Tắt tiếng","D. Nâng thời lượng xem"], ans:1, explain:"'introducing a deliberate delay, or using technology deliberately, restores control.'"},
+      {t:"mc", stem:"Q4. Quan điểm của bài về video ngắn?", opts:["A. Tất cả đều xấu","B. Video ngắn không xấu, vấn đề là frictriction/kiểm soát","C. Nên cấm hoàn toàn","D. Nên xem không giới hạn"], ans:1, explain:"'None of this means short videos are bad... the question is friction.'"}
+    ]
+  }
+};
+
+/* ---- LISTENING SECTIONS (4 levels) ---- */
+const LISTENING_SECTIONS = [
+  {id:"s1", level:"Section 1 — Everyday topics", diff:"Dễ · nghe 1 lần", intro:"Hội thoại/chủ đề hằng ngày, ngắn & dễ hơn. Dùng để luyện nắm ý chính nhanh."},
+  {id:"s2", level:"Section 2 — Academic monologue", diff:"Trung bình", intro:"Bài độc thoại học thuật. Nắm chi tiết và thông tin cụ thể."},
+  {id:"s3", level:"Section 3 — Academic discussion", diff:"Khó hơn", intro:"Thảo luận/phân tích bài đọc, đòi hỏi suy luận."},
+  {id:"s4", level:"Section 4 — Academic lecture", diff:"Khó nhất · nghe trọn bài", intro:"Toàn bộ passage như thuyết giảng, câu hỏi suy luận sâu."}
+];
+
+/* ---- VOCABULARY (collocations from book) ---- */
+const VOCAB = [
+  {en:"sustain attention",vn:"duy trì sự tập trung",day:"Ngày 1 — Focus"},
+  {en:"switch between tasks",vn:"chuyển qua lại giữa các việc",day:"Ngày 1 — Focus"},
+  {en:"working memory",vn:"trí nhớ làm việc",day:"Ngày 1 — Focus"},
+  {en:"a recurring error",vn:"lỗi lặp đi lặp lại",day:"Ngày 1 — Focus"},
+  {en:"lose track of",vn:"quên mình đang làm tới đâu",day:"Ngày 1 — Focus"},
+  {en:"rebuild concentration",vn:"lấy lại sự tập trung",day:"Ngày 1 — Focus"},
+  {en:"an unplanned interruption",vn:"sự gián đoạn không chủ ý",day:"Ngày 1 — Focus"},
+  {en:"work in focused blocks",vn:"học theo từng khoảng tập trung",day:"Ngày 1 — Focus"},
+  {en:"make a pattern visible",vn:"nhận diện rõ một thói quen",day:"Ngày 1 — Focus"},
+  {en:"judge progress",vn:"đánh giá tiến bộ",day:"Ngày 1 — Focus"},
+  {en:"under pressure",vn:"dưới áp lực",day:"Ngày 1 — Focus"},
+  {en:"prioritise an error",vn:"ưu tiên một lỗi",day:"Ngày 1 — Focus"},
+  {en:"a well-rounded education",vn:"nền giáo dục toàn diện",day:"Ngày 2 — Education"},
+  {en:"financial literacy",vn:"hiểu biết tài chính",day:"Ngày 2 — Education"},
+  {en:"an intellectual foundation",vn:"nền tảng tư duy và kiến thức",day:"Ngày 2 — Education"},
+  {en:"transferable skills",vn:"kỹ năng có thể vận dụng rộng",day:"Ngày 2 — Education"},
+  {en:"manage everyday responsibilities",vn:"xử lý trách nhiệm thường ngày",day:"Ngày 2 — Education"},
+  {en:"prepare students for adult life",vn:"chuẩn bị cho đời sống trưởng thành",day:"Ngày 2 — Education"},
+  {en:"remain relevant",vn:"vẫn phù hợp",day:"Ngày 2 — Education"},
+  {en:"become outdated",vn:"trở nên lỗi thời",day:"Ngày 2 — Education"},
+  {en:"integrate X into Y",vn:"tích hợp X vào Y",day:"Ngày 2 — Education"},
+  {en:"place pressure on the timetable",vn:"gây áp lực lên thời khóa biểu",day:"Ngày 2 — Education"},
+  {en:"unequal access to",vn:"chênh lệch khả năng tiếp cận",day:"Ngày 2 — Education"},
+  {en:"apply knowledge in practice",vn:"áp dụng kiến thức vào thực tế",day:"Ngày 2 — Education"},
+  {en:"learn by trial and error",vn:"học qua quá trình thử nghiệm",day:"Ngày 2 — Education"},
+  {en:"serve different purposes",vn:"phục vụ các mục đích khác nhau",day:"Ngày 2 — Education"},
+  {en:"public access to knowledge",vn:"quyền tiếp cận tri thức",day:"Ngày 3 — Libraries"},
+  {en:"bridge the digital divide",vn:"thu hẹp khoảng cách số",day:"Ngày 3 — Libraries"},
+  {en:"a reliable source",vn:"nguồn đáng tin",day:"Ngày 3 — Libraries"},
+  {en:"evaluate information critically",vn:"đánh giá thông tin bằng tư duy phản biện",day:"Ngày 3 — Libraries"},
+  {en:"a community hub",vn:"trung tâm sinh hoạt cộng đồng",day:"Ngày 3 — Libraries"},
+  {en:"a quiet study zone",vn:"khu học yên tĩnh",day:"Ngày 3 — Libraries"},
+  {en:"serve a wider range of needs",vn:"phục vụ nhiều nhu cầu hơn",day:"Ngày 3 — Libraries"},
+  {en:"place staff under pressure",vn:"gây áp lực lên nhân viên",day:"Ngày 3 — Libraries"},
+  {en:"traditional lending statistics",vn:"số liệu mượn sách truyền thống",day:"Ngày 3 — Libraries"},
+  {en:"safe indoor space",vn:"không gian trong nhà an toàn",day:"Ngày 3 — Libraries"},
+  {en:"depend on a person's income",vn:"phụ thuộc thu nhập",day:"Ngày 3 — Libraries"},
+  {en:"follow a universal model",vn:"theo một khuôn mẫu chung",day:"Ngày 3 — Libraries"},
+  {en:"a noticeable upward trend",vn:"xu hướng tăng rõ",day:"Ngày 6 — Data"},
+  {en:"a sustained decline",vn:"giảm kéo dài",day:"Ngày 6 — Data"},
+  {en:"remain broadly stable",vn:"nhìn chung ổn định",day:"Ngày 6 — Data"},
+  {en:"a narrow margin",vn:"khoảng cách nhỏ",day:"Ngày 6 — Data"},
+  {en:"the gap widened",vn:"khoảng cách gia tăng",day:"Ngày 6 — Data"},
+  {en:"account for the largest share",vn:"chiếm tỷ trọng lớn nhất",day:"Ngày 6 — Data"},
+  {en:"an exception to the pattern",vn:"ngoại lệ của xu hướng",day:"Ngày 6 — Data"},
+  {en:"select key features",vn:"chọn đặc điểm chính",day:"Ngày 6 — Data"},
+  {en:"group data logically",vn:"nhóm số liệu hợp lý",day:"Ngày 6 — Data"},
+  {en:"exaggerate a difference",vn:"phóng đại khác biệt",day:"Ngày 6 — Data"},
+  {en:"put a figure in context",vn:"đặt số liệu vào bối cảnh",day:"Ngày 6 — Data"},
+  {en:"a longer-term trend",vn:"xu hướng dài hạn",day:"Ngày 6 — Data"},
+  {en:"short-form content",vn:"nội dung dạng ngắn",day:"Ngày 8 — Media"},
+  {en:"constant stimulation",vn:"kích thích liên tục",day:"Ngày 8 — Media"},
+  {en:"sustained attention",vn:"tập trung kéo dài",day:"Ngày 8 — Media"},
+  {en:"an instant reward",vn:"phần thưởng tức thì",day:"Ngày 8 — Media"},
+  {en:"passive consumption",vn:"tiêu thụ thụ động",day:"Ngày 8 — Media"},
+  {en:"a personalised feed",vn:"bảng tin cá nhân hóa",day:"Ngày 8 — Media"},
+  {en:"hold information in memory",vn:"giữ thông tin trong trí nhớ",day:"Ngày 8 — Media"},
+  {en:"tolerate uncertainty",vn:"chấp nhận điều chưa chắc chắn",day:"Ngày 8 — Media"},
+  {en:"spark curiosity",vn:"khơi gợi tò mò",day:"Ngày 8 — Media"},
+  {en:"replace deeper learning",vn:"lấn át hoạt động học chuyên sâu",day:"Ngày 8 — Media"},
+  {en:"social comparison",vn:"so sánh xã hội",day:"Ngày 8 — Media"},
+  {en:"introduce friction",vn:"tạo rào cản nhỏ",day:"Ngày 8 — Media"},
+  {en:"use technology deliberately",vn:"dùng công nghệ có chủ đích",day:"Ngày 8 — Media"},
+  {en:"shape a habit",vn:"định hình thói quen",day:"Ngày 8 — Media"}
+];
+
+/* ---- GRAMMAR exercises ---- */
+const GRAMMAR = {
+  d1:[
+    {day:"Ngày 1 — Sửa lỗi câu", wrong:"Many student checks their phone while they are study.", right:"Many students check their phones while they are studying.", rule:"Chủ ngữ số nhiều 'students' → động từ nguyên mẫu 'check'. Danh từ 'phones' số nhiều. 'While they are studying' (V-ing sau 'are').", hint:"students / check / studying"},
+    {day:"Ngày 1 — Sửa lỗi câu", wrong:"Because notifications make it difficult to focus.", right:"Notifications make it difficult to focus.", rule:"Đây là mệnh đề phụ (fragment) — thiếu mệnh đề chính. Bỏ 'Because' để thành câu hoàn chỉnh.", hint:"Bỏ 'Because'"},
+    {day:"Ngày 1 — Sửa lỗi câu", wrong:"The number of interruptions are increasing during online lessons.", right:"The number of interruptions is increasing during online lessons.", rule:"'The number of' là số ít → 'is'. 'A number of' mới dùng 'are'.", hint:"is increasing"},
+    {day:"Ngày 1 — Sửa lỗi câu", wrong:"Students can lose many informations when they change tasks quickly.", right:"Students can lose a lot of information when they change tasks quickly.", rule:"'information' là danh từ không đếm được → không có 'many informations'. Dùng 'a lot of information'.", hint:"a lot of information"},
+    {day:"Ngày 1 — Sửa lỗi câu", wrong:"Although technology is useful but it can become distracting.", right:"Although technology is useful, it can become distracting.", rule:"Không dùng 'but' cùng 'although' trong cùng câu — thừa liên từ.", hint:"Bỏ 'but', thêm phẩy"},
+    {day:"Ngày 1 — Sửa lỗi câu", wrong:"I spend too much time to check social media.", right:"I spend too much time checking social media.", rule:"'spend time + V-ing' (không phải 'to V').", hint:"spend time checking"},
+    {day:"Ngày 1 — Sửa lỗi câu", wrong:"People who studies in noisy places may find difficult to concentrate.", right:"People who study in noisy places may find it difficult to concentrate.", rule:"Đại từ quan hệ 'who' + chủ ngữ số nhiều 'people' → 'study'. Cấu trúc 'find it + adj + to V'.", hint:"who study / find it"},
+    {day:"Ngày 1 — Sửa lỗi câu", wrong:"This habit affects badly to their academic performance.", right:"This habit badly affects their academic performance.", rule:"'affect' là ngoại động từ → trực tiếp + tân ngữ, không cần 'to'. Trạng từ 'badly' đứng trước động từ.", hint:"badly affects"}
+  ],
+  d2:[
+    {day:"Ngày 2 — Dịch Việt → Anh", wrong:"Tôi rất thích học vào ban đêm.", right:"I really enjoy studying at night.", rule:"'enjoy + V-ing' (thích + động từ thêm ing).", hint:"enjoy studying"},
+    {day:"Ngày 2 — Dịch Việt → Anh", wrong:"Điện thoại làm tôi mất tập trung hơn và hơn.", right:"Phones make me lose more and more concentration.", rule:"'more and more + danh từ' (ngày càng nhiều). Điện thoại số nhiều → 'phones'.", hint:"make me lose / more and more"},
+    {day:"Ngày 2 — Dịch Việt → Anh", wrong:"Tôi bị áp lực vì có quá nhiều bài tập về nhà.", right:"I'm under pressure because there are too many homework assignments.", rule:"'be under pressure' (bị áp lực). 'because there are too many + danh từ đếm được'.", hint:"under pressure / because there are too many"},
+    {day:"Ngày 2 — Dịch Việt → Anh", wrong:"Tôi muốn cải thiện bản thân trong tiếng Anh.", right:"I want to improve my English.", rule:"'want to + V'. 'improve my English' (cải thiện trình độ) — không nói 'improve myself in English'.", hint:"want to improve my English"}
+  ],
+  d3:[
+    {day:"Ngày 3 — Sửa lỗi câu", wrong:"Libraries give people many knowledges.", right:"Libraries give people a great deal of useful information.", rule:"'knowledge' và 'information' là danh từ không đếm được — không có 's'. Dùng 'a great deal of'.", hint:"a great deal of information"},
+    {day:"Ngày 3 — Sửa lỗi câu", wrong:"The government should invest money for public libraries.", right:"The government should invest money in public libraries.", rule:"'invest money in + danh từ' (đầu tư vào).", hint:"invest money in"},
+    {day:"Ngày 3 — Sửa lỗi câu", wrong:"People can approach reliable information there.", right:"People can access reliable information there.", rule:"'access' (truy cập) đúng hơn 'approach' trong ngữ cảnh thông tin.", hint:"can access"},
+    {day:"Ngày 3 — Sửa lỗi câu", wrong:"This service is very convenience for poor people.", right:"This service is very convenient for disadvantaged people.", rule:"'convenient' là tính từ (không phải 'convenience'). 'disadvantaged people' là cách diễn đạt nhạy cảm hơn 'poor'.", hint:"very convenient"},
+    {day:"Ngày 3 — Sửa lỗi câu", wrong:"The library has less visitors than before, but they stay longer.", right:"The library has fewer visitors than before, but they stay longer.", rule:"'visitors' là danh từ đếm được → 'fewer' (không phải 'less').", hint:"fewer visitors"}
+  ],
+  d5:[
+    {day:"Ngày 5 — Lỗi dịch máy", wrong:"My English level is increasing every day more and more.", right:"My English is improving day by day.", rule:"Bỏ dịch máy từng chữ ('level is increasing'). Diễn đạt tự nhiên: 'improving day by day'.", hint:"improving day by day"},
+    {day:"Ngày 5 — Lỗi dịch máy", wrong:"I am very interested in English grammar skills.", right:"I am very interested in English grammar.", rule:"'grammar' không cần thêm 'skills' lặp thừa.", hint:"interested in English grammar"},
+    {day:"Ngày 5 — Lỗi dịch máy", wrong:"In my opinion I think that reading is important.", right:"In my opinion, reading is important.", rule:"Thừa lặp: 'in my opinion' + 'I think' → chỉ dùng một.", hint:"In my opinion, reading is important"},
+    {day:"Ngày 5 — Lỗi dịch máy", wrong:"Nowadays, the people use smartphones a lot.", right:"Nowadays, people use smartphones a lot.", rule:"'people' chung chung → không dùng 'the'.", hint:"Nowadays, people use"},
+    {day:"Ngày 5 — Lỗi dịch máy", wrong:"I very like learning English with my friends.", right:"I really like learning English with my friends.", rule:"'very' không đứng trước động từ 'like'. Dùng 'really' hoặc 'like ... very much'.", hint:"really like"}
+  ],
+  d10:[
+    {day:"Ngày 10 — Past tense kể chuyện", wrong:"Yesterday I go to the library and study for two hours.", right:"Yesterday I went to the library and studied for two hours.", rule:"'Yesterday' → quá khứ. 'go' → 'went', 'study' → 'studied'.", hint:"went / studied"},
+    {day:"Ngày 10 — Past tense kể chuyện", wrong:"Last year, I hadn't enough time to practice speaking.", right:"Last year, I didn't have enough time to practice speaking.", rule:"Diễn tả sự việc không xảy ra trong quá khứ đơn → 'didn't have' (không dùng 'hadn't' ở đây).", hint:"didn't have"},
+    {day:"Ngày 10 — Past tense kể chuyện", wrong:"When I was a child, I used to played football every day.", right:"When I was a child, I used to play football every day.", rule:"'used to + V nguyên mẫu' (thói quen quá khứ).", hint:"used to play"},
+    {day:"Ngày 10 — Past tense kể chuyện", wrong:"She told me that she will come to the class next day.", right:"She told me that she would come to the class the next day.", rule:"Câu tường thuật gián tiếp → 'will' → 'would', 'next day' → 'the next day'.", hint:"would come / the next day"}
+  ]
+};
+const GRAMMAR_LIST = [].concat(GRAMMAR.d1, GRAMMAR.d2, GRAMMAR.d3, GRAMMAR.d5, GRAMMAR.d10);
+
+/* ---- WRITING prompts ---- */
+const WRITING = [
+  {id:"w1", day:"Ngày 1 — Task 2 Body", prompt:"Some people believe that secondary schools should ban students from using smartphones during the entire school day. To what extent do you agree or disagree?", task:"Viết MỘT đoạn thân bài (150-170 từ) nêu luận điểm + lý do + ví dụ.", vocab:["sustain attention","under pressure","a recurring error","applying knowledge"], sample:"Many students, I would argue, lose a significant amount of focus when smartphones are always at hand. Even silent phones interrupt; a recurring error is to assume that glancing at a screen has no cost, but each glance draws attention away from the lesson and makes it harder to rebuild concentration. When students study in focused blocks without devices, they retain information more effectively and complete tasks more quickly. Furthermore, banning phones during class encourages responsibility and prevents online distractions from putting learners under unnecessary pressure. For these reasons, I agree that restricting smartphone use for the whole school day helps students engage more deeply with their studies."},
+  {id:"w2", day:"Ngày 2 — Thesis", prompt:"Phân tích 5 đề & viết câu thesis (luận điểm):", task:"1) Tuition should be free for all. 2) Cities should ban cars in the centre. 3) Schools should focus on practical skills. 4) Remote work should be standard. 5) Museums should be free.", vocab:["a well-rounded education","remain relevant","integrate X into Y","serve different purposes"], sample:"Ví dụ thesis (đề 3): 'While academic knowledge forms an intellectual foundation, I believe schools should balance it with practical skills so that students are prepared for adult life and can apply what they learn in practice.'"},
+  {id:"w3", day:"Ngày 3 — Task 2 Body (paraphrase)", prompt:"Public libraries are no longer necessary because most information is available online. To what extent do you agree or disagree?", task:"Viết MỘT đoạn thân bài. Paraphrase đề ở câu mở đầu.", vocab:["bridge the digital divide","a reliable source","evaluate information critically","a community hub"], sample:"Many assume that because the internet now holds most information, public libraries have lost their purpose. However, I believe libraries remain essential because not everyone is online, and access alone is not the same as guidance. Libraries bridge the digital divide by offering free computers and a reliable source of help, teaching visitors to evaluate information critically rather than simply consume it. They also function as a community hub and a safe indoor space for those who would otherwise have nowhere quiet to study. Information online is abundant, but a trustworthy, guided environment is not."},
+  {id:"w6", day:"Ngày 6 — Task 1 (charts)", prompt:"Bar chart: số khách đến thư viện theo độ tuổi, năm 2010 vs 2025.", task:"Viết Overview + 2 đoạn chi tiết (120-180 từ). Dùng cụm chỉ số liệu.", vocab:["a noticeable upward trend","remain broadly stable","account for the largest share","an exception to the pattern","the gap widened"], sample:"Overview: The chart compares library visitors by age group in 2010 and 2025. Overall, visits rose for most groups, with the largest share accounted for by adults in 2025, while younger visitors remained the most stable group. Body: Visitors aged 25–44 showed a noticeable upward trend, growing from around 40% to a clear majority, becoming an exception to the otherwise slower growth elsewhere. In contrast, the 55+ group declined slightly, and the gap between the oldest and youngest visitors widened over the fifteen-year period."},
+  {id:"w7", day:"Ngày 7 — Tự đánh giá Task", prompt:"Chọn 1 bài Task 1 hoặc Task 2 bạn đã viết tuần này, tự chấm theo rubric dưới đây.", task:"Dùng checklist bên dưới để tự đánh giá. Sửa 2 lỗi lặp lại.", vocab:["judge progress","a recurring error","prioritise an error"], sample:""},
+  {id:"w8", day:"Ngày 8 — Task 2", prompt:"Many teenagers spend a large amount of time watching short videos online. What effects can this have on their learning and social life?", task:"Viết đoạn thân bài (150-170 từ) về ẢNH HƯỞNG.", vocab:["short-form content","passive consumption","sustained attention","social comparison","hold information in memory"], sample:"Watching short-form content in large amounts can weaken teenagers' ability to sustain attention, because constant stimulation trains the brain to expect an instant reward and makes longer tasks feel dull. This passive consumption may replace deeper learning, leaving students less able to hold information in memory for exams. Socially, the effect is also mixed: social comparison in a personalised feed can lower self-esteem, while endless scrolling reduces real face-to-face conversation. If teenagers do not introduce friction and use technology deliberately, these habits can quietly reshape both how they learn and how they connect with others."}
+];
+
+/* ---- SPEAKING data ---- */
+const SPEAKING = {
+  d1:{
+    day:"Ngày 1 — Part 1, 2, 3 (Focus & Technology)",
+    p1:["What do you usually do when you need to concentrate?","Do you often check your phone while studying?","What subject did you find most difficult at school?","Do you prefer studying in silence or with background noise?","Are you good at managing your time?","What would you like to improve about your English?"],
+    p2:{prompt:"Describe a time when you changed the way you studied.", cues:["What you changed","Why you changed it","How it felt","And how it affected your results"]},
+    p3:["Do you think technology makes people more distracted?","Why do some people find it hard to focus while others do not?","Should schools teach students how to manage attention?","Do you think multitasking is a useful skill or a harmful habit?"],
+    sample:"Part 2 - mẫu: 'I'd like to talk about a time when I changed my study routine. Last year I realised I was constantly checking my phone, losing track of my work. So I decided to study in focused blocks: I would turn my phone off, work for about fifty minutes, and take a planned break. At first it felt uncomfortable because I was used to being interrupted, but over time I rebuilt my concentration. The effect was clear: I finished tasks faster and remembered more, and the sense of progress kept me motivated.'"
+  }
+};
+
+/* ---- 21 DAY LESSONS ---- */
+const DAYS = [
+  {n:1, phase:1, title:"Đánh giá baseline", tag:"Reading · Speaking · Writing", focus:"Làm bài test đầu vào Reading, Writing và Speaking mức vừa để biết điểm xuất phát.", obj:["Xác định band hiện tại của Reading/Writing/Speaking","Nhận diện 3 lỗi phổ biến nhất của mình","Đặt mục tiêu band thực tế cho ngày 21"], products:["Kết quả 3 bài test đầu vào kèm ghi chú band","Danh sách 3 lỗi ưu tiên cần sửa"]},
+  {n:2, phase:1, title:"Thesis & cấu trúc luận", tag:"Writing", focus:"Viết luận điểm (thesis) rõ ràng, tranh luận có cấu trúc.", obj:["Hiểu công thức 1 câu thesis: quan điểm + lý do","Phân biệt agree/disagree, discuss both views, advantages/disadvantages","Viết thesis cho 5 đề mẫu"], products:["5 câu thesis cho 5 đề đã cho","1 đoạn body theo mẫu ngày 1"]},
+  {n:3, phase:1, title:"Bằng chứng & paraphrase", tag:"Reading · Writing", focus:"Tìm bằng chứng trong bài và đổi cách diễn đạt.", obj:["Nhận biết synonym + paraphrase","Tìm bằng chứng hỗ trợ đáp án Reading","Paraphrase lại câu hỏi và đoạn văn"], products:["Paraphrase 5 câu từ Passage 3","1 đoạn body paraphrase đề 'libraries unnecessary'"]},
+  {n:4, phase:1, title:"Speaking fluency", tag:"Speaking", focus:"Nói trôi chảy, dùng pause & recovery phrases đúng chỗ.", obj:["Hiểu vai trò của pause trong fluency","Học 5 recovery phrases","Nói Part 1 mạch lạc theo chủ đề focus"], products:["Bản ghi âm trả lời Part 1 (6 câu)","Danh sách recovery phrases đã dùng"]},
+  {n:5, phase:1, title:"Lỗi dịch máy & collocations", tag:"Grammar · Vocabulary", focus:"Sửa lỗi dịch từng chữ từ tiếng Việt, dùng collocation chuẩn.", obj:["Nhận diện 5 lỗi dịch máy phổ biến","Học collocations chủ đề focus/education","Sửa câu theo đúng ngữ pháp tự nhiên"], products:["5 câu đã sửa từ dạng dịch máy","Flashcards collocations Ngày 5"]},
+  {n:6, phase:1, title:"Task 1 — features", tag:"Writing", focus:"Chọn và mô tả đặc điểm chính của biểu đồ.", obj:["Hiểu các cụm chỉ xu hướng (trend/decline/stable)","Viết overview từ biểu đồ","Tránh phóng đại khác biệt"], products:["Overview + 2 đoạn chi tiết cho chart Ngày 6","Danh sách số liệu đã dùng đúng ngữ cảnh"]},
+  {n:7, phase:1, title:"Đánh giá tuần 1", tag:"Tổng kết", focus:"Nhìn lại tuần, đánh giá tiến bộ bằng 'small wins'.", obj:["Hiểu tâm lý của small wins","Đếm và ghi lại các small wins tuần 1","Đặt mục tiêu tuần 2"], products:["Danh sách small wins của bạn","Mục tiêu tuần 2"]},
+  {n:8, phase:2, title:"Phát triển ý Task 2", tag:"Writing", focus:"Phát triển luận điểm thành đoạn có lý do và ví dụ.", obj:["Hiểu cách mở rộng 1 luận điểm (lý do → ví dụ → kết luận)","Phân tích ảnh hưởng của video ngắn lên học tập/xã hội","Viết được đoạn body mạch lạc"], products:["1 đoạn body đề 'short videos' (150-170 từ)"]},
+  {n:9, phase:2, title:"Chức năng đoạn văn", tag:"Reading · Writing", focus:"Nhận biết chức năng từng đoạn (topic sentence, evidence, conclusion).", obj:["Xác định câu chủ đề (topic sentence)","Phân loại chức năng các đoạn trong Passage 4","Áp dụng vào viết"], products:["Bảng phân tích 5 đoạn văn theo chức năng"]},
+  {n:10, phase:2, title:"Story bank cho Speaking", tag:"Speaking", focus:"Xây kho câu chuyện cá nhân kể bằng quá khứ.", obj:["Thu thập 3 câu chuyện cá nhân đa dụng","Luyện thì quá khứ trong kể chuyện","Nói Part 2 trong 2 phút"], products:["3 câu chuyện cá nhân (story bank)","Bản ghi âm Part 2"]},
+  {n:11, phase:2, title:"Ngữ pháp tranh luận", tag:"Grammar · Writing", focus:"Dùng ngữ pháp chính xác khi đưa lập luận.", obj:["Sửa lỗi ngữ pháp trong câu tranh luận","Dùng đúng mệnh đề quan hệ & liên từ","Viết câu đúng về education"], products:["Bài sửa lỗi ngữ pháp đã hoàn thành"]},
+  {n:12, phase:2, title:"Độ chính xác Task 1", tag:"Writing", focus:"Nêu số liệu chính xác, không phóng đại.", obj:["Đặt số liệu vào đúng ngữ cảnh","Dùng 'a narrow margin', 'account for' chuẩn","Tránh exaggerate khác biệt"], products:["1 bản mô tả chart chỉnh lại độ chính xác"]},
+  {n:13, phase:2, title:"Góc nhìn rộng Part 3", tag:"Speaking", focus:"Phát triển quan điểm đa chiều, có ví dụ.", obj:["Trả lời câu hỏi Part 3 đầy đủ ý","Dùng kỹ thuật 'one topic, three angles'","Luyện câu nói trôi chảy, rõ ý"], products:["Bản ghi âm 4 câu Part 3"]},
+  {n:14, phase:2, title:"Đánh giá có thời gian", tag:"Tổng kết", focus:"Làm bài kiểm tra trong thời gian giới hạn.", obj:["Làm Reading + Writing tính giờ","Quản lý thời gian từng phần","Nhận diện lỗi khi gấp rút"], products:["Kết quả test tính giờ + tự phân tích"]},
+  {n:15, phase:3, title:"Timed Reading", tag:"Reading", focus:"Reading trong 60 phút với áp lực thời gian.", obj:["Hoàn thành bài Reading đúng giờ","Chiến lược skim & scan","Tự chấm điểm từng passage"], products:["Điểm Reading tính giờ + phân tích lỗi"]},
+  {n:16, phase:3, title:"Timed Writing", tag:"Writing", focus:"Task 1 + Task 2 trong đúng thời gian thi.", obj:["Viết Task 1 (~20 phút) + Task 2 (~40 phút)","Tự chấm theo rubric","Sửa lỗi vội vàng"], products:["2 bài viết có thời gian + tự đánh giá"]},
+  {n:17, phase:3, title:"Speaking mock test", tag:"Speaking", focus:"Full mock test Speaking Part 1-2-3.", obj:["Thực hiện full mock test","Ghi âm toàn bộ","Đánh giá theo tiêu chí IELTS"], products:["Bản ghi âm mock test + rubric đánh giá"]},
+  {n:18, phase:3, title:"Sửa lỗi ưu tiên", tag:"Tổng hợp", focus:"Tập trung sửa lỗi lặp lại nghiêm trọng nhất.", obj:["Nhận diện lỗi tần suất cao từ các bài gần đây","Ưu tiên sửa 3 lỗi quan trọng nhất","Luyện lại có ý thức tránh lỗi"], products:["Bảng theo dõi 3 lỗi ưu tiên + bài luyện"]},
+  {n:19, phase:3, title:"Một chủ đề, ba kỹ năng", tag:"Reading · Writing · Speaking", focus:"Chọn 1 chủ đề dùng cho cả Reading, Writing, Speaking.", obj:["Chọn chủ đề (vd: technology, education)","Viết + nói + đọc về cùng chủ đề","Tận dụng từ vựng chung"], products:["1 chủ đề xử lý 3 kỹ năng"]},
+  {n:20, phase:3, title:"Full IELTS mock test", tag:"Mock", focus:"Toàn bộ bài thi IELTS trong điều kiện thi thật.", obj:["Làm đủ Reading, Writing, Speaking (không Listening vì sách không có)","Chấm điểm theo band","Nhận diện điểm yếu chót"], products:["Điểm tổng mock test + kế hoạch ôn chót"]},
+  {n:21, phase:3, title:"Đánh giá cuối", tag:"Tổng kết", focus:"So sánh baseline vs kết quả, lập kế hoạch sau khóa.", obj:["So sánh điểm ngày 1 và ngày 21","Đếm toàn bộ small wins","Lập kế hoạch duy trì & nâng band"], products:["Bản đánh giá cuối khóa + kế hoạch sau 21 ngày"]}
+];
+
+/* ============================================================
+   STATE & HELPERS
+   ============================================================ */
+const $=s=>document.querySelector(s), $$=s=>document.querySelectorAll(s);
+const store={
+  get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d;}catch(e){return d;}},
+  set(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}
+};
+let doneDays=store.get('ielts_done',{});
+let vocabState=store.get('ielts_vocab',{});
+let gramDone=store.get('ielts_gram',{});
+let readingState=store.get('ielts_reading',{});
+let listenState=store.get('ielts_listen',{});
+let todayIdx=0; // computed below
+
+let curDay=1;
+let vocabFilter="all", vocabSetFilter="all";
+
+const DAY_NAMES=["Chủ nhật","Thứ hai","Thứ ba","Thứ tư","Thứ năm","Thứ sáu","Thứ bảy"];
+
+function today(){
+  const d=new Date();
+  const y=d.getFullYear(),m=d.getMonth(),dt=d.getDate();
+  // approximate day-of-month -> map to 1..21 (start of current cycle)
+  return ((dt-1)%21)+1;
+}
+
+function phaseOf(d){return d<=7?1:d<=14?2:3;}
+function phaseName(p){return p===1?"Giai đoạn 1 — Nền tảng":p===2?"Giai đoạn 2 — Phát triển":"Giai đoạn 3 — Tính giờ & Mock";}
+
+function daysDoneCount(){
+  let c=0;for(const k in doneDays){if(doneDays[k])c++;}return c;
+}
+function totalPhaseDone(p){let c=0;for(let i=1;i<=21;i++){if(phaseOf(i)===p&&doneDays[i])c++;}return c;}
+
+/* ============================================================
+   NAVIGATION
+   ============================================================ */
+function go(screen){
+  $$('.nav-item,.ttab').forEach(n=>n.classList.toggle('active',n.dataset.screen===screen));
+  $$('.screen').forEach(s=>s.classList.remove('active'));
+  $('#screen-'+screen).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+  updateNavPct();
+}
+function bindNav(){
+  $$('.nav-item,.ttab').forEach(n=>{
+    n.addEventListener('click',()=>go(n.dataset.screen));
+  });
+}
+
+/* ============================================================
+   HOME
+   ============================================================ */
+function renderHome(){
+  const grid=$('#progress-grid');grid.innerHTML='';
+  const t=today();
+  todayIdx=t;
+  for(let i=1;i<=21;i++){
+    const el=document.createElement('div');
+    el.className='dday'+(doneDays[i]?' done':'')+(i===t?' today':'');
+    el.innerHTML=`<div class="chk">${doneDays[i]?'✓':''}</div><div class="n">D${i}</div><div class="lbl">${DAYS[i-1].title}</div>`;
+    const check=el.querySelector('.chk');
+    el.addEventListener('click',(e)=>{
+      if(e.target===check){doneDays[i]=!doneDays[i];store.set('ielts_done',doneDays);renderHome();updateNavPct();}
+      else {curDay=i;renderLesson();go('lessons');}
+    });
+    grid.appendChild(el);
+  }
+  // stats
+  const done=daysDoneCount();
+  $('#stat-days').textContent=done;
+  $('#stat-pct').textContent=Math.round(done/21*100)+'%';
+  $('#stat-phase').textContent=phaseName(phaseOf(t));
+  // sidebar progress
+  $('#sidebar-progress').style.width=(done/21*100)+'%';
+  $('#sidebar-progress-text').textContent=done+'/21 ngày';
+  // today card
+  const tp=phaseOf(t);
+  let phaseProg=totalPhaseDone(tp), phaseLen=tp===1?7:7;
+  const pc=Math.round(phaseProg/phaseLen*100);
+  $('#today-card').innerHTML=`
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+        <h3 style="margin:0">Hôm nay: ${DAY_NAMES[new Date().getDay()]} — <span style="color:var(--accent)">Ngày ${t}</span></h3>
+        <button class="btn primary small" data-open-day="${t}">Mở bài học ngày ${t} →</button>
+      </div>
+      <p style="color:var(--muted);margin:10px 0 6px;font-size:13.5px"><b style="color:var(--gold)">${DAYS[t-1].title}</b> — ${DAYS[t-1].tag}</p>
+      <p style="color:var(--muted);margin:0 0 12px;font-size:13px">${DAYS[t-1].focus}</p>
+      <div><span class="tag acc">${phaseName(tp)}</span><span class="tag">${sectProgressLabel()}</span></div>
+      <div class="pbar" style="margin-top:10px"><div class="fill" style="width:${pc}%"></div></div>
+      <div style="font-size:12px;color:var(--muted);margin-top:5px">Tiến độ ${phaseName(tp)}: ${phaseProg}/${phaseLen} ngày</div>
+    </div>`;
+  const btn=$('#today-card [data-open-day]');
+  if(btn)btn.addEventListener('click',()=>{curDay=t;renderLesson();go('lessons');});
+  $('#phase1').classList.toggle('current',tp===1);
+  $('#phase2').classList.toggle('current',tp===2);
+  $('#phase3').classList.toggle('current',tp===3);
+}
+function sectProgressLabel(){
+  const g=daysDoneCount();
+  if(g===0)return "Chưa bắt đầu";
+  if(g<7)return "Giai đoạn 1";
+  if(g<14)return "Giai đoạn 2";
+  return "Giai đoạn 3";
+}
+
+/* ============================================================
+   LESSONS
+   ============================================================ */
+function renderDayPicker(){
+  const p=$('#day-picker');p.innerHTML='';
+  DAYS.forEach((d,i)=>{
+    const b=document.createElement('button');
+    b.className='fbtn'+(d.n===curDay?' active':'');
+    b.textContent='D'+d.n;
+    b.addEventListener('click',()=>{curDay=d.n;renderDayPicker();renderLesson();});
+    p.appendChild(b);
+  });
+}
+function renderLesson(){
+  const d=DAYS[curDay-1];
+  const el=$('#lesson-detail');
+  const done=!!doneDays[curDay];
+  el.innerHTML=`
+    <div class="card">
+      <div class="lesson-head">
+        <h3>Ngày ${d.n} — ${d.title} <span class="tag ${phaseOf(d.n)===1?'acc':phaseOf(d.n)===2?'amber':'red'}">${phaseName(phaseOf(d.n))}</span></h3>
+        <button class="btn ${done?'success':'primary'}" id="toggle-day-${d.n}">${done?'✓ Đã hoàn thành':'Đánh dấu hoàn thành'}</button>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 14px"><span class="tag green">${d.tag}</span></div>
+      <div class="lesson-obj">
+        <h4>🎯 Mục tiêu học tập</h4><ul>${d.obj.map(o=>`<li>${o}</li>`).join('')}</ul>
+      </div>
+      <h4>📌 Trọng tâm</h4>
+      <p style="color:var(--txt)">${d.focus}</p>
+      <div class="products">
+        <h4>📦 Sản phẩm cần nộp</h4><ul>${d.products.map(p=>`<li>${p}</li>`).join('')}</ul>
+      </div>
+      <div class="chips">${relatedChips(d.n)}</div>
+      <div class="two-btn">
+        <button class="btn" id="lesson-prev" ${d.n<=1?'disabled':''}>← Ngày ${d.n-1}</button>
+        <button class="btn" id="lesson-next" ${d.n>=21?'disabled':''}>Ngày ${d.n+1} →</button>
+      </div>
+    </div>`;
+  const t=$('#toggle-day-'+d.n);
+  if(t)t.addEventListener('click',()=>{doneDays[curDay]=!doneDays[curDay];store.set('ielts_done',doneDays);renderLesson();renderHome();});
+  const pv=$('#lesson-prev');if(pv&&!pv.disabled)pv.addEventListener('click',()=>{curDay--;renderDayPicker();renderLesson();});
+  const nx=$('#lesson-next');if(nx&&!nx.disabled)nx.addEventListener('click',()=>{curDay++;renderDayPicker();renderLesson();});
+}
+function relatedChips(n){
+  const links=[];
+  // reading passages by day
+  const rd={1:'p1',2:'p2',3:'p3',4:'p4',7:'p7',8:'p8'};
+  const ls={1:'p1',2:'p2',3:'p3',4:'p4',7:'p7',8:'p8'};
+  if(rd[n])links.push(`<button class="chip" onclick="go('reading')">📖 Reading: ${PASSAGES[rd[n]].focus}</button>`);
+  if(ls[n])links.push(`<button class="chip" onclick="go('listening')">🎧 Listening: ${LISTENING[ls[n]].title.split(' — ')[1]}</button>`);
+  if(n===1||n===2||n===3||n===6||n===8||n===7)links.push(`<button class="chip" onclick="go('writing')">📝 Writing: ${WRITING.find(w=>w.day.startsWith('Ngày '+n))?'bài ngày '+n:'mở section'}</button>`);
+  if(n===1||n===5||n===10)links.push(`<button class="chip" onclick="go('grammar')">✍️ Grammar: ${n===1?'Ngày 1':n===5?'Ngày 5':'Ngày 10'}</button>`);
+  if(n===1||n===4||n===10||n===13)links.push(`<button class="chip" onclick="go('speaking')">🎤 Speaking: phần ngày ${n}</button>`);
+  return links.join('');
+}
+
+/* ============================================================
+   READING — quiz engine + TTS
+   ============================================================ */
+let speaking=null;
+function getVoices(){
+  if(!('speechSynthesis' in window))return null;
+  const vs=speechSynthesis.getVoices();
+  const en=vs.filter(v=>/^en[-_]/i.test(v.lang));
+  return en.length?en:vs.filter(v=>/^en/i.test(v.lang));
+}
+function speak(text,rate=0.95,onDone){
+  if(!('speechSynthesis' in window)){alert('Trình duyệt này không hỗ trợ TTS (Web Speech API). Nhấn đọc to sẽ không hoạt động — thử Chrome/Edge.');return;}
+  speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(text);
+  const vs=getVoices();
+  const pref=vs.find(v=>/en-US/i.test(v.name))||vs[0];
+  if(pref)u.voice=pref;
+  u.lang='en-US';u.rate=rate;u.pitch=1;
+  if(onDone)u.onend=onDone;
+  speechSynthesis.speak(u);
+}
+function stopSpeak(){if('speechSynthesis' in window)speechSynthesis.cancel();}
+
+let readingTimers={};
+function renderReading(){
+  const c=$('#reading-container');c.innerHTML='';
+  Object.keys(PASSAGES).forEach(pid=>{
+    const p=PASSAGES[pid];
+    const st=readingState[pid]||{score:getReadingScore(pid),answered:{},timerOn:false};
+    const sec=document.createElement('div');
+    sec.className='card';
+    sec.innerHTML=`
+      <div class="readpanel">
+        <div class="readmeta">
+          <h3 style="margin:0">${p.title}</h3>
+          <span class="tag acc">${p.focus}</span>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px">
+          <button class="btn primary small" data-p="${pid}" data-act="read">🔊 Đọc to (English)</button>
+          <button class="btn small" data-p="${pid}" data-act="stop">⏹ Dừng</button>
+          <button class="btn small" data-p="${pid}" data-act="slow">🐢 Chậm</button>
+          <button class="btn small" data-p="${pid}" data-act="fast">🐇 Nhanh</button>
+          <button class="btn small" data-p="${pid}" data-act="timer">⏱ Timer: ${st.timerOn?'BẬT':'TẮT'}</button>
+          <span class="tag" id="timer-${pid}">${st.timerOn?'00:00':'—'}</span>
+        </div>
+        <div class="vtxt" id="vtxt-${pid}">${p.text}</div>
+      </div>
+      <h4>📋 Câu hỏi (điểm: <span id="score-${pid}">${st.score}/${p.questions.length}</span>)</h4>
+      <div class="qlist" id="qlist-${pid}"></div>`;
+    c.appendChild(sec);
+
+    // bind actions
+    sec.querySelectorAll('[data-act]').forEach(b=>{
+      b.addEventListener('click',()=>{
+        const act=b.dataset.act,pid2=b.dataset.p;
+        const txt=plainFromHtml(PASSAGES[pid2].text);
+        if(act==='read')speak(txt,0.95,()=>{});
+        else if(act==='stop')stopSpeak();
+        else if(act==='slow')speak(txt,0.6,()=>{});
+        else if(act==='fast')speak(txt,1.1,()=>{});
+        else if(act==='timer'){
+          st.timerOn=!st.timerOn;
+          readingState[pid2]=st;store.set('ielts_reading',readingState);
+          b.textContent='⏱ Timer: '+(st.timerOn?'BẬT':'TẮT');
+          const tEl=$('#timer-'+pid2);
+          if(st.timerOn){startReadingTimer(pid2,tEl);}else{clearInterval(readingTimers[pid2]);tEl.textContent='—';}
+        }
+      });
+    });
+    if(st.timerOn){const tEl=$('#timer-'+pid2||$('#timer-'+pid));startReadingTimer(pid,tEl);}
+    renderReadingQuestions(pid,$('#qlist-'+pid));
+  });
+}
+let readingStart={};
+function startReadingTimer(pid,el){
+  clearInterval(readingTimers[pid]);
+  if(!readingStart[pid])readingStart[pid]=Date.now();
+  readingTimers[pid]=setInterval(()=>{
+    const s=Math.floor((Date.now()-readingStart[pid])/1000);
+    const m=String(Math.floor(s/60)).padStart(2,'0'),ss=String(s%60).padStart(2,'0');
+    if(el)el.textContent=`${m}:${ss}`;
+  },1000);
+}
+function getReadingScore(pid){
+  const p=PASSAGES[pid];let s=0;
+  p.questions.forEach((q,i)=>{if(readingState[pid]&&readingState[pid].answered&&readingState[pid].answered[i])s++;});
+  return s;
+}
+function plainFromHtml(html){
+  const d=document.createElement('div');d.innerHTML=html;return d.textContent.replace(/\s+/g,' ').trim();
+}
+function isAns(q,sel){
+  if(q.t==='tfng')return q.ans===sel;
+  if(q.t==='mc')return q.ans===parseInt(sel);
+  if(q.t==='head')return q.ans===sel;
+  if(q.t==='comp')return q.ans.includes(sel.toLowerCase());
+}
+function renderReadingQuestions(pid,host){
+  const p=PASSAGES[pid];
+  let correct=getReadingScore(pid);
+  host.innerHTML=p.questions.map((q,i)=>{
+    const ansState=readingState[pid]&&readingState[pid].answered&&readingState[pid].answered[i];
+    const sel=readingState[pid]&&readingState[pid].sel&&readingState[pid].sel[i];
+    let body='';
+    if(q.t==='tfng'){
+      body=`<div class="opts">${['TRUE','FALSE','NG'].map(o=>`<div class="opt ${ansState&&q.ans===o?'correct':''} ${ansState&&sel===o&&q.ans!==o?'wrong':''}" data-o="${o}"><span class="key">${o}</span></div>`).join('')}</div>`;
+    }else if(q.t==='mc'){
+      body=`<div class="opts">${q.opts.map((o,idx)=>`<div class="opt ${ansState&&q.ans===idx?'correct':''} ${ansState&&sel===idx&&q.ans!==idx?'wrong':''}" data-o="${idx}"><span class="key">${String.fromCharCode(65+idx)}</span>${o.slice(o.indexOf('.')>=0?o.indexOf('.')+1:2).trim()}</div>`).join('')}</div>`;
+    }else if(q.t==='head'){
+      if(q.intro){body=`<div style="color:var(--muted);font-size:13.5px">Đoạn A là phần mở đầu (đã có tiêu đề).</div>`;}
+      else body=`<div class="opts">${q.opts.map(o=>`<div class="opt ${ansState&&q.ans===o?'correct':''} ${ansState&&sel===o&&q.ans!==o?'wrong':''}" data-o="${o}">${o}</div>`).join('')}</div>`;
+    }else if(q.t==='comp'){
+      body=`<div style="display:flex;gap:8px"><input class="input" id="cinp-${pid}-${i}" placeholder="Nhập câu trả lời (tối đa 3 từ)" ${ansState?'disabled':''} value="${ansState?(readingState[pid].textin[i]||''):''}"><button class="btn small" data-ci="${i}" ${ansState?'disabled':''}>Kiểm tra</button></div><div style="font-size:12px;color:var(--dim);margin-top:4px">${q.clue||''}</div>`;
+    }
+    const fb=ansState?`<div class="feedback ${ansState.ok?'ok':'no'} show" >${ansState.ok?'✅ Đúng! ':'❌ $${q.t==='comp'?'':'Sai. Đáp án: '+prettifyAns(q)+'. '} '}${ansState.correct?'':'📖 '+plainFromHtml(q.explain||'')}</div>`:(q.t==='comp'?'':'');
+    return `<div class="qblock" data-q="${i}">
+      <div class="qhead"><span class="qnum">${i+1}</span>${q.stem}</div>
+      ${q.t==='comp'?'':`<div class="qstem">${q.explain?'':''}</div>`}
+      ${body}${fb}</div>`;
+  }).join('');
+
+  host.querySelectorAll('[data-o]').forEach(o=>{
+    o.addEventListener('click',()=>{
+      const qb=o.closest('.qblock');const idx=parseInt(qb.dataset.q);const q=p.questions[idx];
+      selectionAnswer(pid,idx,q,qb,o.dataset.o);
+    });
+  });
+  host.querySelectorAll('[data-ci]').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const qb=btn.closest('.qblock');const idx=parseInt(qb.dataset.q);const q=p.questions[idx];
+      const inp=$('#cinp-'+pid+'-'+idx);const val=inp.value.trim().toLowerCase();
+      completionAnswer(pid,idx,q,qb,val);
+    });
+  });
+}
+function prettifyAns(q){if(q.t==='comp')return q.ans[0];if(q.t==='tfng')return q.ans;if(q.t==='mc')return 'Đáp án '+String.fromCharCode(65+q.ans);if(q.t==='head')return q.ans;}
+function selectionAnswer(pid,idx,q,qb,sel){
+  const ok=isAns(q,sel);
+  readingState[pid]=readingState[pid]||{answered:{},sel:{},textin:{}};
+  readingState[pid].answered[idx]=ok;
+  readingState[pid].sel[idx]=sel;
+  store.set('ielts_reading',readingState);
+  const options=qb.querySelectorAll('.opt');
+  options.forEach(o=>o.classList.remove('sel','correct','wrong'));
+  options.forEach(o=>{
+    if(isAns(q,o.dataset.o))o.classList.add('correct');
+    if(o===qb.querySelector(`[data-o="${sel}"]`)&&!ok)o.classList.add('wrong');
+  });
+  let fb=qb.querySelector('.feedback');
+  if(!fb){fb=document.createElement('div');fb.className='feedback';qb.appendChild(fb);}
+  fb.className='feedback show '+(ok?'ok':'no');
+  fb.innerHTML=(ok?'✅ Đúng! ':'❌ Sai. Đáp án: '+prettifyAns(q)+'. ')+(q.t==='head'?'':'📖 '+plainFromHtml(q.explain||''));
+  const sc=$('#score-'+pid);if(sc)sc.textContent=getReadingScore(pid)+'/'+p.questions.length;
+}
+function completionAnswer(pid,idx,q,qb,val){
+  const ok=q.ans.includes(val);
+  readingState[pid]=readingState[pid]||{answered:{},sel:{},textin:{}};
+  readingState[pid].answered[idx]=ok;
+  readingState[pid].textin[idx]=val;
+  store.set('ielts_reading',readingState);
+  let fb=qb.querySelector('.feedback');
+  if(!fb){fb=document.createElement('div');fb.className='feedback';qb.appendChild(fb);}
+  fb.className='feedback show '+(ok?'ok':'no');
+  if(ok)fb.innerHTML='✅ Đúng! Anh: '+q.ans[0];
+  else fb.innerHTML='❌ Sai. Đáp án: '+q.ans[0]+'. 📖 '+plainFromHtml(q.explain||'');
+  fb.scrollIntoView({block:'nearest'});
+  const sc=$('#score-'+pid);if(sc)sc.textContent=getReadingScore(pid)+'/'+p.questions.length;
+  const inp=$('#cinp-'+pid+'-'+idx);if(inp)inp.disabled=true;
+}
+
+/* ============================================================
+   LISTENING — TTS driven
+   ============================================================ */
+let listenRate=0.95, listenHighlight=false, listenCur=null;
+function renderListening(){
+  const c=$('#listening-container');c.innerHTML='';
+
+  // Controls
+  const ctl=document.createElement('div');
+  ctl.className='card';
+  ctl.innerHTML=`
+    <h3>🎛 Cài đặt nghe</h3>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+      <button class="btn small" id="lspeed-n">Tốc độ: Chuẩn (0.9x)</button>
+      <button class="btn small" id="lspeed-f">Tốc độ: Nhanh (1.1x) ⏩</button>
+      <button class="btn small" id="lhill">✨ Tô sáng theo dòng (Karaoke): <span id="lhill-state">TẮT</span></button>
+    </div>
+    <p style="color:var(--muted);font-size:12.5px;margin:10px 0 0">Giống IELTS thật: bạn được <b>nghe nhiều lần</b>. Tốc độ Nhanh mô phỏng độ khó cao hơn.</p>`;
+  c.appendChild(ctl);
+  $('#lspeed-n').addEventListener('click',()=>{listenRate=0.95;$('#lspeed-n').textContent='Tốc độ: Chuẩn (0.9x)';$('#lspeed-f').textContent='Tốc độ: Nhanh (1.1x) ⏩';});
+  $('#lspeed-f').addEventListener('click',()=>{listenRate=1.1;$('#lspeed-n').textContent='Tốc độ: Chuẩn (0.9x)';$('#lspeed-f').textContent='Tốc độ: Nhanh (1.1x) ⏩';});
+  $('#lhill').addEventListener('click',()=>{listenHighlight=!listenHighlight;$('#lhill-state').textContent=listenHighlight?'BẬT':'TẮT';});
+
+  // Sections explanation
+  const ssec=document.createElement('div');ssec.className='card';
+  ssec.innerHTML=`<h3>📊 4 cấp độ Listening (theo chuẩn IELTS)</h3>`+
+    LISTENING_SECTIONS.map(s=>`<div class="lesson-obj" style="margin-bottom:8px"><h4 style="color:var(--accent)">${s.level} <span class="tag amber">${s.diff}</span></h4><p style="margin:2px 0 0;color:var(--muted);font-size:13px">${s.intro}</p></div>`).join('');
+  c.appendChild(ssec);
+
+  // Each listening exercise
+  Object.keys(LISTENING).forEach(pid=>{
+    const ex=LISTENING[pid];
+    const st=listenState[pid]||{score:getListenScore(pid),answered:{}};
+    const card=document.createElement('div');card.className='card';card.id='lc-'+pid;
+    card.innerHTML=`
+      <div class="readpanel">
+        <div class="readmeta">
+          <h3>${ex.title}</h3><span class="tag acc">${ex.source}</span>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px">
+          <button class="btn primary small" data-lp="${pid}" data-la="play">🎧 Nghe lại lần ${st.times||0}</button>
+          <button class="btn small" data-lp="${pid}" data-la="stop">⏹ Dừng</button>
+          <span class="tag green">Điểm: <span id="ls-${pid}">${st.score}/${ex.questions.length}</span></span>
+        </div>
+        <div class="vtxt" id="lvtxt-${pid}">${ex.text}</div>
+      </div>
+      <h4>❓ Câu hỏi nghe hiểu</h4>
+      <div class="qlist" id="lq-${pid}"></div>`;
+    c.appendChild(card);
+    const play=card.querySelector('[data-la="play"]');
+    play.addEventListener('click',()=>{
+      const txt=plainFromHtml(ex.text);
+      listenCur={pid,div:card,rate:listenRate};
+      const times=(st.times||0)+1;
+      st.times=times;listenState[pid]=st;store.set('ielts_listen',listenState);
+      play.textContent='🎧 Nghe lại lần '+times;
+      if(listenHighlight){highlightSpeak(txt,card);}else{speak(txt,listenRate,()=>{listenCur=null;});}
+    });
+    card.querySelector('[data-la="stop"]').addEventListener('click',stopSpeak);
+    renderListenQuestions(pid,$('#lq-'+pid));
+  });
+  updateListeningNav();
+}
+function highlightSpeak(fullHtml,card){
+  // karaoke: speak sentence by sentence, highlight current
+  if(!('speechSynthesis' in window)){speak(fullHtml,listenRate);return;}
+  const d=document.createElement('div');d.innerHTML=fullHtml;
+  const p=document.createElement('div');p.textContent=/<p>/i.test(fullHtml)?'':fullHtml.replace(/<[^>]+>/g,'');
+  const sents=plainFromHtml(fullHtml).match(/[^.!?]+[.!?]+/g)||[plainFromHtml(fullHtml)];
+  let i=0;
+  const vtxt=card.querySelector('.vtxt');const full=plainFromHtml(fullHtml);
+  const speakOne=()=>{
+    if(i>=sents.length){vtxt.innerHTML=vtxt.dataset.orig||full;vtxt.querySelectorAll('.hl').forEach(x=>x.classList.remove('hl'));listenCur=null;return;}
+    const s=sents[i];
+    // build html with this sentence highlighted
+    vtxt.innerHTML=full.replace(escapeReg(s),`<span class="hl">${escapeHtml(s)}</span>`);
+    const u=new SpeechSynthesisUtterance(s.replace(/<[^>]+>/g,''));
+    const vs=getVoices();const pref=vs.find(v=>/en-US/i.test(v.name))||vs[0];
+    if(pref)u.voice=pref;u.lang='en-US';u.rate=listenRate;
+    u.onend=()=>{i++;speakOne();};
+    u.onerror=()=>{i++;speakOne();};
+    speechSynthesis.speak(u);
+  };
+  if(!card.querySelector('.vtxt').dataset.orig)card.querySelector('.vtxt').dataset.orig=full;
+  speakOne();
+}
+function escapeReg(s){return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');}
+function escapeHtml(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function getListenScore(pid){const ex=LISTENING[pid];let s=0;(ex.questions||[]).forEach((q,i)=>{if(listenState[pid]&&listenState[pid].answered&&listenState[pid].answered[i])s++;});return s;}
+function isLAns(q,sel){
+  if(q.t==='mc')return q.ans===parseInt(sel);
+  if(q.t==='gap')return q.ans.includes(String(sel).toLowerCase().trim());
+  return false;
+}
+function renderListenQuestions(pid,host){
+  const ex=LISTENING[pid];
+  host.innerHTML=ex.questions.map((q,i)=>{
+    const ansState=listenState[pid]&&listenState[pid].answered&&listenState[pid].answered[i];
+    const sel=listenState[pid]&&listenState[pid].sel&&listenState[pid].sel[i];
+    let body='';
+    if(q.t==='mc'){
+      body=`<div class="opts">${q.opts.map((o,idx)=>`<div class="opt ${ansState&&q.ans===idx?'correct':''} ${ansState&&sel===idx&&q.ans!==idx?'wrong':''}" data-o="${idx}"><span class="key">${String.fromCharCode(65+idx)}</span>${o.slice(o.indexOf('.')>=0?o.indexOf('.')+1:2).trim()}</div>`).join('')}</div>`;
+    }else if(q.t==='gap'){
+      body=`<div style="display:flex;gap:8px;flex-wrap:wrap"><input class="input" id="linp-${pid}-${i}" placeholder="Nghe và điền vào chỗ trống (tối đa 3 từ)" ${ansState?'disabled':''} value="${ansState?(listenState[pid].textin[i]||''):''}"><button class="btn small" data-li="${i}" ${ansState?'disabled':''}>Kiểm tra</button></div>`;
+    }
+    const fb=ansState?`<div class="feedback ${ansState.ok?'ok':'no'} show">${ansState.ok?'✅ Đúng! ':'❌ Sai. Đáp án: '+q.ans[0]+'. '}${ansState.correct||ansState.ok?'':''}📖 ${escapeHtml((q.explain||''))}</div>`:'';
+    return `<div class="qblock" data-liq="${i}"><div class="qhead"><span class="qnum">${i+1}</span>${q.stem}</div>${body}${fb}</div>`;
+  }).join('');
+  host.querySelectorAll('[data-o]').forEach(o=>{
+    o.addEventListener('click',()=>{
+      const idx=parseInt(o.closest('.qblock').dataset.liq),q=ex.questions[idx];
+      listenState[pid]=listenState[pid]||{answered:{},sel:{},textin:{}};
+      const ok=isLAns(q,o.dataset.o);
+      listenState[pid].answered[idx]=ok;listenState[pid].sel[idx]=o.dataset.o;
+      store.set('ielts_listen',listenState);
+      const qb=o.closest('.qblock');
+      qb.querySelectorAll('.opt').forEach(x=>x.classList.remove('sel','correct','wrong'));
+      qb.querySelectorAll('.opt').forEach(x=>{if(isLAns(q,x.dataset.o))x.classList.add('correct');if(x===o&&!ok)x.classList.add('wrong');});
+      let fb=qb.querySelector('.feedback');if(!fb){fb=document.createElement('div');fb.className='feedback';qb.appendChild(fb);}
+      fb.className='feedback show '+(ok?'ok':'no');
+      fb.innerHTML=(ok?'✅ Đúng! ':'❌ Sai. Đáp án: '+q.ans[0]+'. ')+'📖 '+escapeHtml((q.explain||''));
+      const sc=$('#ls-'+pid);if(sc)sc.textContent=getListenScore(pid)+'/'+ex.questions.length;
+      updateListeningNav();
+    });
+  });
+  host.querySelectorAll('[data-li]').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const idx=parseInt(btn.closest('.qblock').dataset.liq),q=ex.questions[idx];
+      const inp=$('#linp-'+pid+'-'+idx);const val=inp.value.trim().toLowerCase();
+      listenState[pid]=listenState[pid]||{answered:{},sel:{},textin:{}};
+      const ok=isLAns(q,val);listenState[pid].answered[idx]=ok;listenState[pid].textin[idx]=val;
+      store.set('ielts_listen',listenState);
+      const qb=btn.closest('.qblock');
+      let fb=qb.querySelector('.feedback');if(!fb){fb=document.createElement('div');fb.className='feedback';qb.appendChild(fb);}
+      fb.className='feedback show '+(ok?'ok':'no');
+      fb.innerHTML=ok?'✅ Đúng! Đáp án: '+q.ans[0]:'❌ Sai. Đáp án: '+q.ans[0]+'. 📖 '+escapeHtml((q.explain||''));
+      inp.disabled=true;
+      const sc=$('#ls-'+pid);if(sc)sc.textContent=getListenScore(pid)+'/'+ex.questions.length;
+      updateListeningNav();
+    });
+  });
+}
+function updateListeningNav(){
+  let total=0,done=0;
+  Object.keys(LISTENING).forEach(pid=>{const ex=LISTENING[pid];total+=ex.questions.length;done+=getListenScore(pid);});
+  $('#nav-listening-pct').textContent=done+'/'+total;
+}
+
+/* ============================================================
+   VOCABULARY — flashcards
+   ============================================================ */
+function vocabKnown(en){return vocabState[en]==='k';}
+function vocabUnknown(en){return vocabState[en]==='u';}
+function renderVocabFilters(){
+  const f=$('#vocab-filters');f.innerHTML='';
+  const days=['all',...new Set(VOCAB.map(v=>v.day))];
+  days.forEach(d=>{
+    const b=document.createElement('button');
+    b.className='fbtn'+(vocabFilter===d?' active':'');
+    b.textContent=d==='all'?'Tất cả':d;
+    b.addEventListener('click',()=>{vocabFilter=d;renderVocabFilters();renderVocab();});
+    f.appendChild(b);
+  });
+}
+function vocabPool(){
+  let pool=[...VOCAB];
+  if(vocabFilter!=='all')pool=pool.filter(v=>v.day===vocabFilter);
+  if(vocabSetFilter==='known')pool=pool.filter(v=>vocabState[v.en]==='k');
+  else if(vocabSetFilter==='unknown')pool=pool.filter(v=>vocabState[v.en]==='u');
+  else if(vocabSetFilter==='none')pool=pool.filter(v=>!vocabState[v.en]);
+  return pool;
+}
+function renderVocab(){
+  const grid=$('#vocab-grid');
+  let pool=vocabPool();
+  // spaced repetition: repeat unknown cards more
+  const repeatHard=pool.filter(v=>vocabState[v.en]==='u');
+  pool=[...pool,...repeatHard,...repeatHard];
+  if(shuffled)pool=shuffle(pool);
+  grid.innerHTML='';
+  pool.forEach(v=>{
+    const c=document.createElement('div');
+    c.className='flip';c.dataset.en=v.en;
+    c.innerHTML=`
+      <div class="flip-inner">
+        <div class="flip-face"><div class="hint">Nhấn để lật</div><div class="en">${v.en}</div><div class="sect" style="font-size:11px;color:var(--dim);margin-top:6px">${v.day}</div></div>
+        <div class="flip-face flip-back"><div class="vn">🇻🇳 ${v.vn}</div></div>
+      </div>
+      <div style="display:flex;gap:6px;margin-top:8px">
+        <button class="btn small ${vocabKnown(v.en)?'success':''}" data-vk="1">✓ Biết</button>
+        <button class="btn small danger" data-vu="1">✗ Chưa biết</button>
+      </div>`;
+    c.querySelector('.flip-inner').addEventListener('click',()=>c.classList.toggle('flipped'));
+    c.querySelector('[data-vk]').addEventListener('click',e=>{e.stopPropagation();vocabState[v.en]='k';store.set('ielts_vocab',vocabState);renderVocab();renderVocabProgress();});
+    c.querySelector('[data-vu]').addEventListener('click',e=>{e.stopPropagation();vocabState[v.en]='u';store.set('ielts_vocab',vocabState);renderVocab();renderVocabProgress();});
+    grid.appendChild(c);
+  });
+  renderVocabProgress();
+}
+function renderVocabProgress(){
+  const known=Object.values(vocabState).filter(x=>x==='k').length;
+  const unknown=Object.values(vocabState).filter(x=>x==='u').length;
+  const pct=Math.round(known/VOCAB.length*100);
+  $('#vocab-progress').style.width=pct+'%';
+  $('#vocab-progress-text').textContent=`Biết ${known} · Chưa biết ${unknown} · Tổng ${VOCAB.length} · Đã học ${Math.round((known+unknown)/VOCAB.length*100)}%`;
+  updateVocabNav();
+}
+function updateVocabNav(){
+  const known=Object.values(vocabState).filter(x=>x==='k').length;
+  $('#nav-vocab-pct').textContent=known+'/'+VOCAB.length;
+}
+let shuffled=false;
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+
+/* ============================================================
+   GRAMMAR
+   ============================================================ */
+function renderGrammar(){
+  const host=$('#grammar-container');host.innerHTML='';
+  const groups=[{k:'d1',t:'Ngày 1 — Sửa lỗi câu'},{k:'d2',t:'Ngày 2 — Dịch Việt → Anh'},{k:'d3',t:'Ngày 3 — Sửa lỗi câu'},{k:'d5',t:'Ngày 5 — Lỗi dịch máy'},{k:'d10',t:'Ngày 10 — Past tense kể chuyện'}];
+  let gi=0;
+  groups.forEach(g=>{
+    const sec=document.createElement('div');sec.className='card';
+    sec.innerHTML=`<h3>${g.t}</h3><div id="g-${g.k}"></div>`;
+    host.appendChild(sec);
+    GRAMMAR[g.k].forEach(ex=>{
+      const done=!!gramDone[ex.wrong];
+      const id='gx-'+(gi++);
+      sec.querySelector('#g-'+g.k).insertAdjacentHTML('beforeend',`
+        <div class="qblock">
+          <div class="qstem" style="margin-bottom:6px"><b style="color:var(--amber)">✏️</b> <span style="color:var(--txt)">${ex.wrong}</span> <span class="tag ${done?'green':'amber'}" style="margin-left:6px">${done?'✓ đã sửa':'chưa sửa'}</span></div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:6px"><input class="input" id="${id}-in" placeholder="Gõ câu đã sửa vào đây..." ${done?'disabled':''} value="${done?(gramDone[ex.wrong]||''):''}"><button class="btn small" data-gchk="${id}" ${done?'disabled':''}>Kiểm tra</button></div>
+          <div class="feedback" id="${id}-fb"></div>
+          <div style="font-size:12px;color:var(--dim)">💡 Gợi ý: ${ex.hint}</div>
+        </div>`);
+      const btn=sec.querySelector('[data-gchk="'+id+'"]');
+      btn.addEventListener('click',()=>{
+        const inp=$('#'+id+'-in'),fb=$('#'+id+'-fb');
+        const val=inp.value.trim().toLowerCase();
+        const ok=normalize(val)===normalize(ex.right.toLowerCase());
+        if(ok){
+          gramDone[ex.wrong]=inp.value.trim();store.set('ielts_gram',gramDone);
+          fb.className='feedback ok show';fb.innerHTML='✅ Đúng! '+ex.rule;
+          inp.disabled=true;btn.disabled=true;
+          sec.querySelector('.tag').outerHTML='<span class="tag green">✓ đã sửa</span>';
+          updateGrammarNav();
+        }else{
+          fb.className='feedback no show';fb.innerHTML='❌ Chưa đúng. Đáp án: '+ex.right+'<br>📖 '+ex.rule;
+          fb.scrollIntoView({block:'nearest'});
+        }
+      });
+    });
+  });
+  updateGrammarNav();
+}
+function normalize(s){return s.replace(/[^\w\s]/g,' ').replace(/\s+/g,' ').trim();}
+function updateGrammarNav(){
+  const done=Object.keys(gramDone).length;
+  $('#nav-grammar-pct').textContent=done+'/'+GRAMMAR_LIST.length;
+}
+
+/* ============================================================
+   WRITING
+   ============================================================ */
+function renderWriting(){
+  const host=$('#writing-container');host.innerHTML='';
+  WRITING.forEach(w=>{
+    const card=document.createElement('div');card.className='card';card.id='w-'+w.id;
+    card.innerHTML=`
+      <h3>${w.day}</h3>
+      <p style="background:var(--bg2);border:1px solid var(--border);padding:12px 14px;border-radius:var(--radius-s)"><b>✍️ Đề:</b> ${w.prompt}</p>
+      <p style="color:var(--muted);font-size:13px">⚙️ ${w.task}</p>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin:10px 0">
+        <button class="btn small" data-wt="${w.id}">⏱ ${w.timer?w.timer:'Bấm giờ 20:00'}</button>
+        <span class="tag" id="${w.id}-timer">—</span>
+        <button class="btn small primary" data-ws="${w.id}">💾 Lưu bài</button>
+        <button class="btn small" data-wr="${w.id}">🔄 Xóa</button>
+      </div>
+      <textarea class="input writing" id="${w.id}-ta" placeholder="Viết bài của bạn ở đây...">${w.saved||''}</textarea>
+      <div class="wcbar"><span>Từ: <b id="${w.id}-words">0</b></span><span>${w.vocab.length} từ vựng gợi ý</span></div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap;margin:8px 0 12px">${w.vocab.map(v=>`<span class="tag acc">${v}</span>`).join('')}</div>
+      <details><summary style="cursor:pointer;color:var(--accent);font-size:13px">📖 Xem bài mẫu để so sánh</summary>
+        <div style="background:var(--greenbg);border:1px solid rgba(63,185,111,.3);padding:12px 14px;border-radius:var(--radius-s);margin-top:8px;font-size:13.5px">${w.sample||'Bài mẫu: tự chấm theo rubric bên dưới.'}</div></details>
+      <h4 style="margin-top:16px">🔍 Tự đánh giá (rubric)</h4>
+      <div class="rubric">
+        <label><input type="checkbox" data-rub="${w.id}"> Luận điểm rõ ràng, có câu chủ đề</label>
+        <label><input type="checkbox" data-rub="${w.id}"> Có lý do + ví dụ cụ thể</label>
+        <label><input type="checkbox" data-rub="${w.id}"> Dùng từ vựng collocation chuẩn</label>
+        <label><input type="checkbox" data-rub="${w.id}"> Ít lỗi ngữ pháp (số ít/nhiều, thì)</label>
+        <label><input type="checkbox" data-rub="${w.id}"> Đúng yêu cầu đề (paraphrase, task)</label>
+        <label><input type="checkbox" data-rub="${w.id}"> Đủ/không vượt quá số từ</label>
+      </div>`;
+    host.appendChild(card);
+
+    const ta=$('#'+w.id+'-ta');
+    ta.addEventListener('input',()=>{
+      const n=ta.value.trim().split(/\s+/).filter(Boolean).length;
+      $('#'+w.id+'-words').textContent=n;
+      const bar=$('#'+w.id+'-words');
+      bar.style.color=n>=150&&n<=180?'var(--green)':(n<150?'var(--amber)':'var(--red)');
+      w.saved=ta.value;
+    });
+    card.querySelector('[data-ws="'+w.id+'"]').addEventListener('click',()=>{
+      writeData[w.id]=ta.value;store.set('ielts_writing',writeData);
+      flash('.btn[data-ws="'+w.id+'"]','Đã lưu ✓');
+    });
+    card.querySelector('[data-wr="'+w.id+'"]').addEventListener('click',()=>{ta.value='';w.saved='';$('#'+w.id+'-words').textContent=0;delete writeData[w.id];store.set('ielts_writing',writeData);});
+    card.querySelector('[data-wt="'+w.id+'"]').addEventListener('click',()=>{
+      writingTimer={...};
+      // simple: 20 min countdown per click using existing mechanism
+      if(!w._t){w._t=true;startWqTimer(w.id);}else{clearInterval(w._tm);w._t=false;$('#'+w.id+'-timer').textContent='—';}
+    });
+  });
+}
+let writeData=store.get('ielts_writing',{});
+function startWqTimer(wid){
+  const end=Date.now()+20*60*1000;
+  const el=$('#'+wid+'-timer');
+  const t=setInterval(()=>{
+    const s=Math.max(0,Math.floor((end-Date.now())/1000));
+    el.textContent=String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0');
+    if(s<=0){clearInterval(t);el.textContent='⏰ Hết giờ!';}
+  },1000);
+  WRITING.find(w=>w.id===wid)._tm=t; // store ref to clear
+}
+function flash(sel,msg){const el=$(sel);if(el){const old=el.textContent;el.textContent=msg;setTimeout(()=>el.textContent=old,1200);}}
+
+/* ============================================================
+   SPEAKING
+   ============================================================ */
+let recorder=null,chunks=[],recState={};
+function renderSpeaking(){
+  const host=$('#speaking-container');host.innerHTML='';
+  const s=SPEAKING.d1;
+  const d=document.createElement('div');d.className='card';
+  d.innerHTML=`
+    <h3>${s.day}</h3>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:14px">
+      <button class="btn small" id="srec">🎙 Bắt đầu ghi âm</button>
+      <button class="btn small" id="splay">▶ Nghe lại</button>
+      <button class="btn small danger" id="sclear">🗑 Xóa bản ghi</button>
+      <span class="rec-status" id="sstatus">Chưa ghi</span>
+      <button class="btn small" id="stimer">⏱ Timer 1' chuẩn bị + 2' nói</button>
+      <span class="tag" id="sttimer">—</span>
+    </div>
+    <h4>🗣 Part 1 — Hỏi đáp nhanh (focus)</h4>
+    <ul style="line-height:1.9;color:var(--txt)">${s.p1.map((q,i)=>`<li><b>${i+1}.</b> ${q}</li>`).join('')}</ul>
+    <h4>💬 Part 2 — Cue card</h4>
+    <div class="lesson-obj"><p style="margin:0 0 6px"><b>${s.p2.prompt}</b></p>
+      <ul>${s.p2.cues.map(c=>`<li>${c}</li>`).join('')}</ul></div>
+    <h4>🔎 Part 3 — Thảo luận</h4>
+    <ul style="line-height:1.9;color:var(--txt)">${s.p3.map((q,i)=>`<li><b>${i+1}.</b> ${q}</li>`).join('')}</ul>
+    <h4>✅ Checklist tự đánh giá</h4>
+    <div class="rubric">
+      <label><input type="checkbox" data-sc="f"> Nói trôi chảy, không dừng quá lâu</label>
+      <label><input type="checkbox" data-sc="g"> Dùng đúng thì (nhất là quá khứ ở Part 2)</label>
+      <label><input type="checkbox" data-sc="v"> Có từ vựng/collocation</label>
+      <label><input type="checkbox" data-sc="p"> Phát âm rõ, dễ nghe</label>
+      <label><input type="checkbox" data-sc="c"> Trả lời đúng trọng tâm câu hỏi</label>
+    </div>
+    <details style="margin-top:14px"><summary style="cursor:pointer;color:var(--accent);font-size:13px">📖 Xem câu trả lời mẫu (Part 2)</summary>
+      <div style="background:var(--greenbg);border:1px solid rgba(63,185,111,.3);padding:12px 14px;border-radius:var(--radius-s);margin-top:8px;font-size:13.5px">${s.sample}</div></details>`;
+  host.appendChild(d);
+
+  $('#srec').addEventListener('click',toggleRec);
+  $('#splay').addEventListener('click',playRec);
+  $('#sclear').addEventListener('click',()=>{chunks=[];recState.audio=null;$('#sstatus').textContent='Đã xóa bản ghi';});
+  $('#stimer').addEventListener('click',startSpeakTimer);
+}
+function toggleRec(){
+  const st=$('#sstatus');
+  if(recorder&&recorder.state==='recording'){recorder.stop();st.textContent='Đang xử lý...';return;}
+  st.classList.add('live');st.textContent='● ĐANG GHI ÂM...';
+  startRec();
+}
+function startRec(){
+  if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia){$('#sstatus').textContent='Trình duyệt không hỗ trợ ghi âm. Dùng Chrome/Edge.';return;}
+  navigator.mediaDevices.getUserMedia({audio:true}).then(stream=>{
+    chunks=[];
+    recorder=new MediaRecorder(stream);
+    recorder.ondataavailable=e=>{if(e.data.size>0)chunks.push(e.data);};
+    recorder.onstop=()=>{
+      const blob=new Blob(chunks,{type:'audio/webm'});
+      recState.audio=URL.createObjectURL(blob);
+      $('.rec-status').classList.remove('live');
+      $('.rec-status').textContent='✓ Đã ghi xong. Bấm ▶ Nghe lại.';
+      stream.getTracks().forEach(t=>t.stop());
+    };
+    recorder.start();
+  }).catch(()=>{$('.rec-status').classList.remove('live');$('.rec-status').textContent='⚠ Không được phép truy cập mic.';});
+}
+function playRec(){
+  if(recState.audio){const a=new Audio(recState.audio);a.play();}
+  else alert('Chưa có bản ghi nào. Hãy ghi âm trước.');
+}
+function startSpeakTimer(){
+  const el=$('#sttimer');
+  // 1 min prep then 2 min speak
+  let phase='prep',time=60,done=false;
+  const t=setInterval(()=>{
+    const m=Math.floor(time/60),s=time%60;
+    el.textContent=(phase==='prep'?'📋 Chuẩn bị ':'🗣 Nói ')+String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');
+    time--;
+    if(time<0){
+      if(phase==='prep'){phase='speak';time=120;const u=new SpeechSynthesisUtterance('Begin speaking now');if('speechSynthesis' in window)speechSynthesis.speak(u);}
+      else{clearInterval(t);el.textContent='⏰ Hết giờ nói!';if('speechSynthesis' in window)speechSynthesis.cancel();}
+    }
+  },1000);
+  recState.speakTimer=t;
+}
+
+/* ============================================================
+   NAV PCT + INIT
+   ============================================================ */
+function updateNavPct(){
+  const done=daysDoneCount();
+  $('#sidebar-progress').style.width=(done/21*100)+'%';
+  $('#sidebar-progress-text').textContent=done+'/21 ngày';
+}
+
+/* INIT */
+document.addEventListener('DOMContentLoaded',()=>{
+  // load writing saves
+  Object.assign(WRITING,{});
+  WRITING.forEach(w=>{if(writeData[w.id])w.saved=writeData[w.id];});
+  bindNav();
+  renderHome();
+  renderDayPicker();
+  renderLesson();
+  renderReading();
+  renderListening();
+  renderVocabFilters();
+  renderVocab();
+  renderGrammar();
+  renderWriting();
+  renderSpeaking();
+  $('#vocab-shuffle').addEventListener('click',()=>{shuffled=!shuffled;renderVocab();});
+  $('#vocab-filter-btn').addEventListener('click',()=>{
+    const next=vocabSetFilter==='all'?'known':vocabSetFilter==='known'?'unknown':vocabSetFilter==='unknown'?'none':'all';
+    vocabSetFilter=next;
+    $('#vocab-filter-btn').textContent='🔍 '+(next==='all'?'Đã học / chưa học':next==='known'?'Đã biết':next==='unknown'?'Chưa biết':'Chưa đánh dấu');
+    renderVocab();
+  });
+  $('#vocab-reset').addEventListener('click',()=>{if(confirm('Reset toàn bộ tiến độ flashcards?')){vocabState={};store.set('ielts_vocab',vocabState);renderVocab();}});
+  // preload voices
+  if('speechSynthesis' in window){speechSynthesis.getVoices();speechSynthesis.onvoiceschanged=()=>{};}
+  updateListenNav2();
+});
+function updateListenNav2(){updateListeningNav();}
+</script>
